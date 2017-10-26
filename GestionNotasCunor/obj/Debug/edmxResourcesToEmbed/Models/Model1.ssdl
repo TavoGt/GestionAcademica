@@ -1,0 +1,328 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GestionNotasCunorModel.Store" Provider="Npgsql" ProviderManifestToken="9.6.3" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="actividad">
+    <Key>
+      <PropertyRef Name="id_actividad" />
+    </Key>
+    <Property Name="id_actividad" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nom_actividad" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="valor" Type="numeric" Precision="4" Scale="2" Nullable="false" />
+    <Property Name="fecha" Type="date" />
+    <Property Name="id_carrera" Type="int4" Nullable="false" />
+    <Property Name="id_curso" Type="int4" Nullable="false" />
+    <Property Name="seccion" Type="bpchar" MaxLength="1" Nullable="false" />
+  </EntityType>
+  <EntityType Name="alumno">
+    <Key>
+      <PropertyRef Name="id_alumno" />
+    </Key>
+    <Property Name="id_alumno" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="carnet" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="nombres" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="apellidos" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="id_sexo" Type="int4" Nullable="false" />
+    <Property Name="telefono" Type="varchar" MaxLength="8" />
+    <Property Name="email" Type="varchar" MaxLength="45" />
+  </EntityType>
+  <EntityType Name="asign_alumno">
+    <Key>
+      <PropertyRef Name="id_asign_alumno" />
+    </Key>
+    <Property Name="id_asign_alumno" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_alumno" Type="int4" Nullable="false" />
+    <Property Name="ciclo" Type="int4" Nullable="false" />
+    <Property Name="anio" Type="int4" Nullable="false" />
+    <Property Name="fecha" Type="date" />
+  </EntityType>
+  <EntityType Name="asign_curso">
+    <Key>
+      <PropertyRef Name="id_carrera" />
+      <PropertyRef Name="id_curso" />
+      <PropertyRef Name="seccion" />
+    </Key>
+    <Property Name="id_carrera" Type="int4" Nullable="false" />
+    <Property Name="id_curso" Type="int4" Nullable="false" />
+    <Property Name="seccion" Type="bpchar" MaxLength="1" Nullable="false" />
+    <Property Name="id_catedratico" Type="int4" Nullable="false" />
+    <Property Name="salon" Type="varchar" MaxLength="5" />
+  </EntityType>
+  <EntityType Name="calificacion">
+    <Key>
+      <PropertyRef Name="id_actividad" />
+      <PropertyRef Name="id_alumno" />
+    </Key>
+    <Property Name="id_actividad" Type="int4" Nullable="false" />
+    <Property Name="id_alumno" Type="int4" Nullable="false" />
+    <Property Name="calif_obtenida" Type="numeric" Precision="4" Scale="2" />
+  </EntityType>
+  <EntityType Name="caracteristica">
+    <Key>
+      <PropertyRef Name="id_caracteristica" />
+    </Key>
+    <Property Name="id_caracteristica" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nom_caracteristica" Type="varchar" MaxLength="12" Nullable="false" />
+  </EntityType>
+  <EntityType Name="carrera">
+    <Key>
+      <PropertyRef Name="id_carrera" />
+    </Key>
+    <Property Name="id_carrera" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nom_carrera" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="catedratico">
+    <Key>
+      <PropertyRef Name="id_catedratico" />
+    </Key>
+    <Property Name="id_catedratico" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="colegiado" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="nombres" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="apellidos" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="id_sexo" Type="int4" Nullable="false" />
+    <Property Name="telefono" Type="varchar" MaxLength="8" />
+    <Property Name="email" Type="varchar" MaxLength="45" />
+    <Property Name="profesion" Type="varchar" MaxLength="45" />
+  </EntityType>
+  <EntityType Name="curso">
+    <Key>
+      <PropertyRef Name="id_curso" />
+    </Key>
+    <Property Name="id_curso" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="cod_curso" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="nom_curso" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="creditos" Type="int4" />
+    <Property Name="no_ciclo" Type="int4" Nullable="false" />
+    <Property Name="cod_prerrequisito" Type="int4" />
+    <Property Name="creditos_necesarios" Type="int4" />
+    <Property Name="id_caracteristica" Type="int4" Nullable="false" />
+  </EntityType>
+  <EntityType Name="detalle_asign">
+    <Key>
+      <PropertyRef Name="id_detalle_asign" />
+    </Key>
+    <Property Name="id_detalle_asign" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_asign_alumno" Type="int4" Nullable="false" />
+    <Property Name="id_carrera" Type="int4" Nullable="false" />
+    <Property Name="id_curso" Type="int4" Nullable="false" />
+    <Property Name="seccion" Type="bpchar" MaxLength="1" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sexo">
+    <Key>
+      <PropertyRef Name="id_sexo" />
+    </Key>
+    <Property Name="id_sexo" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nom_sexo" Type="varchar" MaxLength="9" Nullable="false" />
+  </EntityType>
+  <Association Name="actividad_id_carrera_fkey">
+    <End Role="asign_curso" Type="Self.asign_curso" Multiplicity="1" />
+    <End Role="actividad" Type="Self.actividad" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="asign_curso">
+        <PropertyRef Name="id_carrera" />
+        <PropertyRef Name="id_curso" />
+        <PropertyRef Name="seccion" />
+      </Principal>
+      <Dependent Role="actividad">
+        <PropertyRef Name="id_carrera" />
+        <PropertyRef Name="id_curso" />
+        <PropertyRef Name="seccion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="alumno_id_sexo_fkey">
+    <End Role="sexo" Type="Self.sexo" Multiplicity="1" />
+    <End Role="alumno" Type="Self.alumno" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sexo">
+        <PropertyRef Name="id_sexo" />
+      </Principal>
+      <Dependent Role="alumno">
+        <PropertyRef Name="id_sexo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="asign_alumno_id_alumno_fkey">
+    <End Role="alumno" Type="Self.alumno" Multiplicity="1" />
+    <End Role="asign_alumno" Type="Self.asign_alumno" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="alumno">
+        <PropertyRef Name="id_alumno" />
+      </Principal>
+      <Dependent Role="asign_alumno">
+        <PropertyRef Name="id_alumno" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="asign_curso_id_carrera_fkey">
+    <End Role="carrera" Type="Self.carrera" Multiplicity="1" />
+    <End Role="asign_curso" Type="Self.asign_curso" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="carrera">
+        <PropertyRef Name="id_carrera" />
+      </Principal>
+      <Dependent Role="asign_curso">
+        <PropertyRef Name="id_carrera" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="asign_curso_id_catedratico_fkey">
+    <End Role="catedratico" Type="Self.catedratico" Multiplicity="1" />
+    <End Role="asign_curso" Type="Self.asign_curso" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="catedratico">
+        <PropertyRef Name="id_catedratico" />
+      </Principal>
+      <Dependent Role="asign_curso">
+        <PropertyRef Name="id_catedratico" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="asign_curso_id_curso_fkey">
+    <End Role="curso" Type="Self.curso" Multiplicity="1" />
+    <End Role="asign_curso" Type="Self.asign_curso" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="curso">
+        <PropertyRef Name="id_curso" />
+      </Principal>
+      <Dependent Role="asign_curso">
+        <PropertyRef Name="id_curso" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="calificacion_id_actividad_fkey">
+    <End Role="actividad" Type="Self.actividad" Multiplicity="1" />
+    <End Role="calificacion" Type="Self.calificacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="actividad">
+        <PropertyRef Name="id_actividad" />
+      </Principal>
+      <Dependent Role="calificacion">
+        <PropertyRef Name="id_actividad" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="calificacion_id_alumno_fkey">
+    <End Role="alumno" Type="Self.alumno" Multiplicity="1" />
+    <End Role="calificacion" Type="Self.calificacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="alumno">
+        <PropertyRef Name="id_alumno" />
+      </Principal>
+      <Dependent Role="calificacion">
+        <PropertyRef Name="id_alumno" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="catedratico_id_sexo_fkey">
+    <End Role="sexo" Type="Self.sexo" Multiplicity="1" />
+    <End Role="catedratico" Type="Self.catedratico" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sexo">
+        <PropertyRef Name="id_sexo" />
+      </Principal>
+      <Dependent Role="catedratico">
+        <PropertyRef Name="id_sexo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="curso_id_caracteristica_fkey">
+    <End Role="caracteristica" Type="Self.caracteristica" Multiplicity="1" />
+    <End Role="curso" Type="Self.curso" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="caracteristica">
+        <PropertyRef Name="id_caracteristica" />
+      </Principal>
+      <Dependent Role="curso">
+        <PropertyRef Name="id_caracteristica" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="detalle_asign_id_asign_alumno_fkey">
+    <End Role="asign_alumno" Type="Self.asign_alumno" Multiplicity="1" />
+    <End Role="detalle_asign" Type="Self.detalle_asign" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="asign_alumno">
+        <PropertyRef Name="id_asign_alumno" />
+      </Principal>
+      <Dependent Role="detalle_asign">
+        <PropertyRef Name="id_asign_alumno" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="detalle_asign_id_carrera_fkey">
+    <End Role="asign_curso" Type="Self.asign_curso" Multiplicity="1" />
+    <End Role="detalle_asign" Type="Self.detalle_asign" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="asign_curso">
+        <PropertyRef Name="id_carrera" />
+        <PropertyRef Name="id_curso" />
+        <PropertyRef Name="seccion" />
+      </Principal>
+      <Dependent Role="detalle_asign">
+        <PropertyRef Name="id_carrera" />
+        <PropertyRef Name="id_curso" />
+        <PropertyRef Name="seccion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="GestionNotasCunorModelStoreContainer">
+    <EntitySet Name="actividad" EntityType="Self.actividad" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="alumno" EntityType="Self.alumno" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="asign_alumno" EntityType="Self.asign_alumno" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="asign_curso" EntityType="Self.asign_curso" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="calificacion" EntityType="Self.calificacion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="caracteristica" EntityType="Self.caracteristica" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="carrera" EntityType="Self.carrera" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="catedratico" EntityType="Self.catedratico" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="curso" EntityType="Self.curso" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="detalle_asign" EntityType="Self.detalle_asign" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sexo" EntityType="Self.sexo" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="actividad_id_carrera_fkey" Association="Self.actividad_id_carrera_fkey">
+      <End Role="asign_curso" EntitySet="asign_curso" />
+      <End Role="actividad" EntitySet="actividad" />
+    </AssociationSet>
+    <AssociationSet Name="alumno_id_sexo_fkey" Association="Self.alumno_id_sexo_fkey">
+      <End Role="sexo" EntitySet="sexo" />
+      <End Role="alumno" EntitySet="alumno" />
+    </AssociationSet>
+    <AssociationSet Name="asign_alumno_id_alumno_fkey" Association="Self.asign_alumno_id_alumno_fkey">
+      <End Role="alumno" EntitySet="alumno" />
+      <End Role="asign_alumno" EntitySet="asign_alumno" />
+    </AssociationSet>
+    <AssociationSet Name="asign_curso_id_carrera_fkey" Association="Self.asign_curso_id_carrera_fkey">
+      <End Role="carrera" EntitySet="carrera" />
+      <End Role="asign_curso" EntitySet="asign_curso" />
+    </AssociationSet>
+    <AssociationSet Name="asign_curso_id_catedratico_fkey" Association="Self.asign_curso_id_catedratico_fkey">
+      <End Role="catedratico" EntitySet="catedratico" />
+      <End Role="asign_curso" EntitySet="asign_curso" />
+    </AssociationSet>
+    <AssociationSet Name="asign_curso_id_curso_fkey" Association="Self.asign_curso_id_curso_fkey">
+      <End Role="curso" EntitySet="curso" />
+      <End Role="asign_curso" EntitySet="asign_curso" />
+    </AssociationSet>
+    <AssociationSet Name="calificacion_id_actividad_fkey" Association="Self.calificacion_id_actividad_fkey">
+      <End Role="actividad" EntitySet="actividad" />
+      <End Role="calificacion" EntitySet="calificacion" />
+    </AssociationSet>
+    <AssociationSet Name="calificacion_id_alumno_fkey" Association="Self.calificacion_id_alumno_fkey">
+      <End Role="alumno" EntitySet="alumno" />
+      <End Role="calificacion" EntitySet="calificacion" />
+    </AssociationSet>
+    <AssociationSet Name="catedratico_id_sexo_fkey" Association="Self.catedratico_id_sexo_fkey">
+      <End Role="sexo" EntitySet="sexo" />
+      <End Role="catedratico" EntitySet="catedratico" />
+    </AssociationSet>
+    <AssociationSet Name="curso_id_caracteristica_fkey" Association="Self.curso_id_caracteristica_fkey">
+      <End Role="caracteristica" EntitySet="caracteristica" />
+      <End Role="curso" EntitySet="curso" />
+    </AssociationSet>
+    <AssociationSet Name="detalle_asign_id_asign_alumno_fkey" Association="Self.detalle_asign_id_asign_alumno_fkey">
+      <End Role="asign_alumno" EntitySet="asign_alumno" />
+      <End Role="detalle_asign" EntitySet="detalle_asign" />
+    </AssociationSet>
+    <AssociationSet Name="detalle_asign_id_carrera_fkey" Association="Self.detalle_asign_id_carrera_fkey">
+      <End Role="asign_curso" EntitySet="asign_curso" />
+      <End Role="detalle_asign" EntitySet="detalle_asign" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

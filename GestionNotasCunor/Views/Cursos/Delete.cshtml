@@ -1,0 +1,81 @@
+﻿@model GestionNotasCunor.Models.curso
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>curso</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.cod_curso)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cod_curso)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nom_curso)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nom_curso)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.creditos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.creditos)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.no_ciclo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.no_ciclo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cod_prerrequisito)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cod_prerrequisito)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.creditos_necesarios)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.creditos_necesarios)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.caracteristica.nom_caracteristica)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.caracteristica.nom_caracteristica)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,75 @@
+﻿@model GestionNotasCunor.Models.catedratico
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>Catedrático</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Colegiado
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.colegiado)
+        </dd>
+
+        <dt>
+            Nombres
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombres)
+        </dd>
+
+        <dt>
+            Apellidos
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.apellidos)
+        </dd>
+
+        <dt>
+            Sexo
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sexo.nom_sexo)
+        </dd>
+
+        <dt>
+            Teléfono
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.telefono)
+        </dd>
+
+        <dt>
+            Correo electrónico
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.email)
+        </dd>
+
+        <dt>
+            Profesión
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.profesion)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.id_catedratico }) |
+    @Html.ActionLink("Lista de Catedráticos", "Index")
+</p>

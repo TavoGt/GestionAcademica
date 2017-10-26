@@ -1,0 +1,28 @@
+﻿@model GestionNotasCunor.Models.carrera
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>Carrera</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Carrera
+            @*@Html.DisplayNameFor(model => model.nom_carrera)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nom_carrera)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.id_carrera }) |
+    @Html.ActionLink("Lista de Carreras", "Index")
+</p>

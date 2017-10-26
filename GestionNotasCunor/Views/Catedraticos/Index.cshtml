@@ -1,0 +1,70 @@
+﻿@model IEnumerable<GestionNotasCunor.Models.catedratico>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Nuevo Catedrático", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Colegiado
+        </th>
+        <th>
+            Nombres
+        </th>
+        <th>
+            Apellidos
+        </th>
+        <th>
+            Sexo
+        </th>
+        <th>
+            Teléfono
+        </th>
+        <th>
+            e-mail
+        </th>
+        <th>
+            Profesión
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.colegiado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nombres)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.apellidos)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.sexo.nom_sexo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.telefono)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.profesion)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.id_catedratico }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.id_catedratico }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.id_catedratico })
+        </td>
+    </tr>
+}
+
+</table>

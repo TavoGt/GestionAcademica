@@ -1,0 +1,58 @@
+﻿@model IEnumerable<GestionNotasCunor.Models.asign_curso>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Nueva Asignación", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Carrera
+        </th>
+        <th>
+            Catedrático
+        </th>
+        <th>
+            Curso
+        </th>
+        <th>
+            Sección
+        </th>
+        <th>
+            Salón
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.carrera.nom_carrera)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.catedratico.colegiado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.curso.cod_curso)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.seccion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.salon)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Detalles", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Eliminar", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

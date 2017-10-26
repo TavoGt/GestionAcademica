@@ -1,0 +1,67 @@
+﻿@model GestionNotasCunor.Models.alumno
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>Alumno</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Carnet
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.carnet)
+        </dd>
+
+        <dt>
+            Nombres
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombres)
+        </dd>
+
+        <dt>
+            Apellidos
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.apellidos)
+        </dd>
+
+        <dt>
+            Teléfono
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.telefono)
+        </dd>
+
+        <dt>
+            Correo electrónico
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.email)
+        </dd>
+
+        <dt>
+            Sexo
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sexo.nom_sexo)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.id_alumno }) |
+    @Html.ActionLink("Lista de alumnos", "Index")
+</p>

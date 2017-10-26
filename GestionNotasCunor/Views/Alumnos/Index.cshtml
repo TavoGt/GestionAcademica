@@ -1,0 +1,64 @@
+﻿@model IEnumerable<GestionNotasCunor.Models.alumno>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Nuevo alumno", "Create", null, new { @class = "btn btn-primary"})
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Carnet
+        </th>
+        <th>
+            Nombres
+        </th>
+        <th>
+            Apellidos
+        </th>
+        <th>
+            Teléfono
+        </th>
+        <th>
+            email
+        </th>
+        <th>
+            Sexo
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.carnet)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nombres)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.apellidos)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.telefono)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.sexo.nom_sexo)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.id_alumno }, new { @class = "btn btn-primary" }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.id_alumno }, new { @class = "btn btn-info" }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.id_alumno }, new { @class = "btn btn-danger" })
+        </td>
+    </tr>
+}
+
+</table>

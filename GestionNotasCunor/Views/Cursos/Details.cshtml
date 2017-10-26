@@ -1,0 +1,75 @@
+﻿@model GestionNotasCunor.Models.curso
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>Curso</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Código
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cod_curso)
+        </dd>
+
+        <dt>
+            Curso
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nom_curso)
+        </dd>
+
+        <dt>
+            Créditos
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.creditos)
+        </dd>
+
+        <dt>
+            No. Ciclo
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.no_ciclo)
+        </dd>
+
+        <dt>
+            Cod. prerrequisito
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cod_prerrequisito)
+        </dd>
+
+        <dt>
+            Créditos necesarios
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.creditos_necesarios)
+        </dd>
+
+        <dt>
+            Característica
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.caracteristica.nom_caracteristica)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.id_curso }) |
+    @Html.ActionLink("Lista de  cursos", "Index")
+</p>

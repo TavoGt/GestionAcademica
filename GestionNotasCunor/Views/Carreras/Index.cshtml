@@ -1,0 +1,37 @@
+﻿@model IEnumerable<GestionNotasCunor.Models.carrera>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Nueva Carrera", "Create", null, new { @class = "btn btn-primary"})
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Carrera
+        </th>
+        <th>
+            Acciones
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.nom_carrera)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.id_carrera }, new { @class = "btn btn-primary"}) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.id_carrera }, new { @class = "btn btn-info"}) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.id_carrera }, new { @class = "btn btn-danger"})
+        </td>
+    </tr>
+}
+
+</table>

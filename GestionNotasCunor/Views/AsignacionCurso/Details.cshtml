@@ -1,0 +1,51 @@
+﻿@model GestionNotasCunor.Models.asign_curso
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>asign_curso</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.salon)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.salon)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.carrera.nom_carrera)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.carrera.nom_carrera)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.catedratico.colegiado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.catedratico.colegiado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.curso.cod_curso)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.curso.cod_curso)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
