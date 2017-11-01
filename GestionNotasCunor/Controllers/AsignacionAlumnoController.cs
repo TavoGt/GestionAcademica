@@ -17,6 +17,10 @@ namespace GestionNotasCunor.Controllers
         // GET: AsignacionAlumno
         public ActionResult Index()
         {
+            var alumno = from m in db.alumno
+                       select new { id_alumno = m.id_alumno, nombres = m.nombres + " " + m.apellidos };
+            ViewBag.alumno = alumno;
+
             var asign_alumno = db.asign_alumno.Include(a => a.alumno);
             return View(asign_alumno.ToList());
         }
@@ -39,10 +43,9 @@ namespace GestionNotasCunor.Controllers
         // GET: AsignacionAlumno/Create
         public ActionResult Create()
         {
-            ViewBag.id_alumno = new SelectList(db.alumno, "id_alumno", "carnet");
+                        ViewBag.id_alumno = new SelectList(db.alumno, "id_alumno", "carnet");
             ViewBag.id_carrera = new SelectList(db.carrera, "id_carrera", "nom_carrera");
             ViewBag.lista_carreras = db.carrera;
-
             return View();
         }
 

@@ -5,6 +5,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<link href="~/Content/combobox.css" rel="stylesheet" />
+
 <h2>Crear</h2>
 
 @using (Html.BeginForm()) 
@@ -19,7 +21,7 @@
             @Html.Label("Carrera", new { @class = "control-label col-md-2" })
             @*@Html.LabelFor(model => model.id_carrera, "id_carrera", htmlAttributes: new { @class = "control-label col-md-2" })*@
             <div class="col-md-10">
-                @Html.DropDownList("id_carrera", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("id_carrera", null, htmlAttributes: new { @class = "form-control combobox" })
                 @Html.ValidationMessageFor(model => model.id_carrera, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -28,7 +30,7 @@
             @Html.Label("Curso", new { @class = "control-label col-md-2" })
             @*@Html.LabelFor(model => model.id_curso, "id_curso", htmlAttributes: new { @class = "control-label col-md-2" })*@
             <div class="col-md-10">
-                @Html.DropDownList("id_curso", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("id_curso", null, htmlAttributes: new { @class = "form-control combobox" })
                 @Html.ValidationMessageFor(model => model.id_curso, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -46,7 +48,7 @@
             @Html.Label("Catedrático", new { @class = "control-label col-md-2" })
             @*@Html.LabelFor(model => model.id_catedratico, "id_catedratico", htmlAttributes: new { @class = "control-label col-md-2" })*@
             <div class="col-md-10">
-                @Html.DropDownList("id_catedratico", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("id_catedratico", null, htmlAttributes: new { @class = "form-control combobox" })
                 @Html.ValidationMessageFor(model => model.id_catedratico, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -71,3 +73,7 @@
 <div>
     @Html.ActionLink("Lista de Asignaciones", "Index")
 </div>
+@section Scripts{
+    <script src="~/Scripts/jquery.combobox.js"></script>
+    @Scripts.Render("~/bundles/jqueryval")
+}
