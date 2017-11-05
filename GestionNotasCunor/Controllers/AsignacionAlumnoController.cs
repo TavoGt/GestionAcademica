@@ -48,12 +48,13 @@ namespace GestionNotasCunor.Controllers
             ViewBag.id_carrera = new SelectList(db.carrera, "id_carrera", "nom_carrera");
 
             //Consulta para mostrar cursos por carrera
-            var buscarCurso = from a in db.asign_curso
+            var buscarCurso = (from a in db.asign_curso
                               join c in db.curso on a.id_curso equals c.id_curso
-                              where a.id_carrera == 1 //Id de carrera según el dropdownlist principal
-                              select new { id_asign_curso = a.id_asign_curso, nom_curso = c.nom_curso};
+                              where a.id_carrera == codCarrera //Id de carrera según el dropdownlist principal
+                              select new { id_asign_curso = a.id_asign_curso, nom_curso = c.nom_curso}).ToList();
             
-            ViewBag.lista_cursos = new SelectList(buscarCurso, "id_asign_curso", "nom_curso");
+            ViewBag.buscarCurso = new SelectList(buscarCurso, "id_asign_curso", "nom_curso");
+            ViewBag.lista_cursos = buscarCurso.ToList();
             ViewBag.lista_carreras = db.carrera;
             return View();
         }

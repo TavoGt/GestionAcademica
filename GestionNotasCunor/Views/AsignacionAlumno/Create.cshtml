@@ -52,7 +52,7 @@
             @*</div>*@
 
             @*<select id="St" class="form-control col-md-10">*@
-            <select id ="St" class="form-control St" name="detalle_asign[0].id_asign_curso">
+            <select id ="St" class="form-control col-md-10">
 
             </select>
         </div>
@@ -65,6 +65,7 @@
         <table class="table table-bordered table-condensed table-hover" id="tblDetalles">
             <thead>
                 <tr>
+                    <th>Código</th>
                     <th>Curso</th>
                 </tr>
             </thead>
@@ -98,25 +99,24 @@
             $.get("/AsignacionAlumno/busqCurso", { idCarrera: $("#id_carrera").val() }, function (data) {
                 $("#St").empty();
                 $.each(data, function (index, row) {
-                    $("#St").append("<option value ='"+row.id_asignCurso+"' >"+row.nom_curso+"</option>")
+                    $("#St").append("<option value ='" + row.id_asign_curso + "' >" + row.nom_curso + "</option>")
                 });
             });
         });
     });
 </script>
 
-@section Scripts{
-    <script type="text/javascript">
-        @*var opCursos = '@foreach (var itm in ViewBag.lista_cursos) {<text><option value="@itm.id_asign_curso">@itm.nom_curso</option></text>}';*@
+<script>
+    $(function () {
         var cont = 0;
-
-        function agregarLinea() {
+        $("#St").change(function () {
+            $.get("AsignacionAlumno/Create"), {}
             linea = '<tr>' +
-                    //'<td><select class="form-control" name="detalle_asign[' + cont + '].id_curso"> ' + opCursos + '</select></td>' +
-                    //'<td><select class="form-control" name="detalle_asign[' + cont + '].id_asign_curso"> ' + opCursos + '</select></td>' +
-                '</tr>';
+                    '<td><input type="text" class="form-control" name="detalle_asign[' + cont + '].id_asign_curso" value="' + $("#St").val() + '"/></td>' +
+                    '<td><input type="text" class="form-control" value="' + $("#St option:selected").text() + '"/></td>' +
+                    '</tr>';
             $('#tblDetalles > tbody').append(linea);
             cont++;
-        }
-    </script>
-}
+        })
+    })
+</script>
