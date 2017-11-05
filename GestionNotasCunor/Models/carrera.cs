@@ -17,12 +17,15 @@ namespace GestionNotasCunor.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public carrera()
         {
+            this.asign_alumno = new HashSet<asign_alumno>();
             this.asign_curso = new HashSet<asign_curso>();
         }
     
         public int id_carrera { get; set; }
         public string nom_carrera { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<asign_alumno> asign_alumno { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<asign_curso> asign_curso { get; set; }
     }

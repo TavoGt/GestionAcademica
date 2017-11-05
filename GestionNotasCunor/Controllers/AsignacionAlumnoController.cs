@@ -13,6 +13,7 @@ namespace GestionNotasCunor.Controllers
     public class AsignacionAlumnoController : Controller
     {
         private ctxNotasCunor db = new ctxNotasCunor();
+        int codCarrera = 0;
 
         // GET: AsignacionAlumno
         public ActionResult Index()
@@ -43,15 +44,27 @@ namespace GestionNotasCunor.Controllers
         // GET: AsignacionAlumno/Create
         public ActionResult Create()
         {
-                        ViewBag.id_alumno = new SelectList(db.alumno, "id_alumno", "carnet");
+            ViewBag.id_alumno = new SelectList(db.alumno, "id_alumno", "carnet");
             ViewBag.id_carrera = new SelectList(db.carrera, "id_carrera", "nom_carrera");
+
+            //Consulta para mostrar cursos por carrera
+            var buscarCurso = from a in db.asign_curso
+                              join c in db.curso on a.id_curso equals c.id_curso
+                              where a.id_carrera == 1 //Id de carrera según el dropdownlist principal
+                              select new { id_asign_curso = a.id_asign_curso, nom_curso = c.nom_curso};
+            
+            ViewBag.lista_cursos = new SelectList(buscarCurso, "id_asign_curso", "nom_curso");
             ViewBag.lista_carreras = db.carrera;
             return View();
         }
 
         public JsonResult busqCurso(int idCarrera) {
-            var consulta = (from m in db.curso
-                            select new { m.id_curso, m.nom_curso, m.no_ciclo, m.cod_curso}).ToList();
+            codCarrera = idCarrera;
+            db.Configuration.ProxyCreationEnabled = false;
+            var consulta = (from a in db.asign_curso
+                            join c in db.curso on a.id_curso equals c.id_curso
+                            where a.id_carrera == idCarrera //Id de carrera según el dropdownlist principal
+                            select new { id_asign_curso = a.id_asign_curso, nom_curso = c.nom_curso }).ToList();
 
             return Json(consulta, JsonRequestBehavior.AllowGet);
         }
@@ -61,10 +74,12 @@ namespace GestionNotasCunor.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id_asign_alumno,id_alumno,ciclo,anio,fecha")] asign_alumno asign_alumno)
+        public ActionResult Create(/*[Bind(Include = "id_asign_alumno,id_alumno,ciclo,anio,fecha")]*/ asign_alumno asign_alumno)
         {
             if (ModelState.IsValid)
             {
+                asign_alumno.anio = DateTime.Today.Year; //LLenando el año de forma automática
+                asign_alumno.fecha = DateTime.Today; //Llenando la fecha de forma automática
                 db.asign_alumno.Add(asign_alumno);
                 db.SaveChanges();
                 return RedirectToAction("Index");

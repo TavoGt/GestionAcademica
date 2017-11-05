@@ -8,7 +8,7 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Nueva asignación", "Create")
+    @Html.ActionLink("Nueva asignación", "Create", new { @class = "btn btn-succes pull-right"})
 </p>
 <table class="table">
     <tr>
@@ -59,3 +59,14 @@
 }
 
 </table>
+
+<!--modal placeholder-->
+<div id='myModal' class="modal fade in">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div id="myModalContent"></div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/modalwindow.js"></script>

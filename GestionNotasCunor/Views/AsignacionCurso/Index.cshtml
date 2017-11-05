@@ -19,6 +19,9 @@
             Catedrático
         </th>
         <th>
+            Codigo
+        </th>
+        <th>
             Curso
         </th>
         <th>
@@ -43,15 +46,18 @@
             @Html.DisplayFor(modelItem => item.curso.cod_curso)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.curso.nom_curso)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.seccion)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.salon)
         </td>
         <td>
-            @Html.ActionLink("Editar", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Detalles", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Eliminar", "Delete", new { /* id=item.PrimaryKey */ })
+            @Html.ActionLink("Editar", "Edit", new { id=item.id_asign_curso }) |
+            @Html.ActionLink("Detalles", "Details", new { id = item.id_asign_curso }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id = item.id_asign_curso })
         </td>
     </tr>
 }

@@ -1,33 +1,96 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="GestionNotasCunorModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="ctxNotasCunor" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="actividad" EntityType="GestionNotasCunorModel.actividad" />
+    <EntitySet Name="alumno" EntityType="GestionNotasCunorModel.alumno" />
+    <EntitySet Name="asign_alumno" EntityType="GestionNotasCunorModel.asign_alumno" />
+    <EntitySet Name="asign_curso" EntityType="GestionNotasCunorModel.asign_curso" />
+    <EntitySet Name="calificacion" EntityType="GestionNotasCunorModel.calificacion" />
+    <EntitySet Name="caracteristica" EntityType="GestionNotasCunorModel.caracteristica" />
+    <EntitySet Name="carrera" EntityType="GestionNotasCunorModel.carrera" />
+    <EntitySet Name="catedratico" EntityType="GestionNotasCunorModel.catedratico" />
+    <EntitySet Name="curso" EntityType="GestionNotasCunorModel.curso" />
+    <EntitySet Name="detalle_asign" EntityType="GestionNotasCunorModel.detalle_asign" />
+    <EntitySet Name="sexo" EntityType="GestionNotasCunorModel.sexo" />
+    <AssociationSet Name="actividad_id_asign_curso_fkey" Association="GestionNotasCunorModel.actividad_id_asign_curso_fkey">
+      <End Role="asign_curso" EntitySet="asign_curso" />
+      <End Role="actividad" EntitySet="actividad" />
+    </AssociationSet>
+    <AssociationSet Name="calificacion_id_actividad_fkey" Association="GestionNotasCunorModel.calificacion_id_actividad_fkey">
+      <End Role="actividad" EntitySet="actividad" />
+      <End Role="calificacion" EntitySet="calificacion" />
+    </AssociationSet>
+    <AssociationSet Name="alumno_id_sexo_fkey" Association="GestionNotasCunorModel.alumno_id_sexo_fkey">
+      <End Role="sexo" EntitySet="sexo" />
+      <End Role="alumno" EntitySet="alumno" />
+    </AssociationSet>
+    <AssociationSet Name="asign_alumno_id_alumno_fkey" Association="GestionNotasCunorModel.asign_alumno_id_alumno_fkey">
+      <End Role="alumno" EntitySet="alumno" />
+      <End Role="asign_alumno" EntitySet="asign_alumno" />
+    </AssociationSet>
+    <AssociationSet Name="calificacion_id_alumno_fkey" Association="GestionNotasCunorModel.calificacion_id_alumno_fkey">
+      <End Role="alumno" EntitySet="alumno" />
+      <End Role="calificacion" EntitySet="calificacion" />
+    </AssociationSet>
+    <AssociationSet Name="asign_alumno_id_carrera_fkey" Association="GestionNotasCunorModel.asign_alumno_id_carrera_fkey">
+      <End Role="carrera" EntitySet="carrera" />
+      <End Role="asign_alumno" EntitySet="asign_alumno" />
+    </AssociationSet>
+    <AssociationSet Name="detalle_asign_id_asign_alumno_fkey" Association="GestionNotasCunorModel.detalle_asign_id_asign_alumno_fkey">
+      <End Role="asign_alumno" EntitySet="asign_alumno" />
+      <End Role="detalle_asign" EntitySet="detalle_asign" />
+    </AssociationSet>
+    <AssociationSet Name="asign_curso_id_carrera_fkey" Association="GestionNotasCunorModel.asign_curso_id_carrera_fkey">
+      <End Role="carrera" EntitySet="carrera" />
+      <End Role="asign_curso" EntitySet="asign_curso" />
+    </AssociationSet>
+    <AssociationSet Name="asign_curso_id_catedratico_fkey" Association="GestionNotasCunorModel.asign_curso_id_catedratico_fkey">
+      <End Role="catedratico" EntitySet="catedratico" />
+      <End Role="asign_curso" EntitySet="asign_curso" />
+    </AssociationSet>
+    <AssociationSet Name="asign_curso_id_curso_fkey" Association="GestionNotasCunorModel.asign_curso_id_curso_fkey">
+      <End Role="curso" EntitySet="curso" />
+      <End Role="asign_curso" EntitySet="asign_curso" />
+    </AssociationSet>
+    <AssociationSet Name="detalle_asign_id_asign_curso_fkey" Association="GestionNotasCunorModel.detalle_asign_id_asign_curso_fkey">
+      <End Role="asign_curso" EntitySet="asign_curso" />
+      <End Role="detalle_asign" EntitySet="detalle_asign" />
+    </AssociationSet>
+    <AssociationSet Name="curso_id_caracteristica_fkey" Association="GestionNotasCunorModel.curso_id_caracteristica_fkey">
+      <End Role="caracteristica" EntitySet="caracteristica" />
+      <End Role="curso" EntitySet="curso" />
+    </AssociationSet>
+    <AssociationSet Name="catedratico_id_sexo_fkey" Association="GestionNotasCunorModel.catedratico_id_sexo_fkey">
+      <End Role="sexo" EntitySet="sexo" />
+      <End Role="catedratico" EntitySet="catedratico" />
+    </AssociationSet>
+  </EntityContainer>
   <EntityType Name="actividad">
     <Key>
       <PropertyRef Name="id_actividad" />
     </Key>
     <Property Name="id_actividad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="nom_actividad" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="valor" Type="Decimal" Precision="4" Scale="2" Nullable="false" />
+    <Property Name="nom_actividad" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
+    <Property Name="valor" Type="Decimal" Nullable="false" Precision="4" Scale="2" />
     <Property Name="fecha" Type="DateTime" Precision="0" />
-    <Property Name="id_carrera" Type="Int32" Nullable="false" />
-    <Property Name="id_curso" Type="Int32" Nullable="false" />
-    <Property Name="seccion" Type="String" MaxLength="1" FixedLength="true" Unicode="true" Nullable="false" />
-    <NavigationProperty Name="asign_curso" Relationship="Self.actividad_id_carrera_fkey" FromRole="actividad" ToRole="asign_curso" />
-    <NavigationProperty Name="calificacion" Relationship="Self.calificacion_id_actividad_fkey" FromRole="actividad" ToRole="calificacion" />
+    <Property Name="id_asign_curso" Type="Int32" />
+    <NavigationProperty Name="asign_curso" Relationship="GestionNotasCunorModel.actividad_id_asign_curso_fkey" FromRole="actividad" ToRole="asign_curso" />
+    <NavigationProperty Name="calificacion" Relationship="GestionNotasCunorModel.calificacion_id_actividad_fkey" FromRole="actividad" ToRole="calificacion" />
   </EntityType>
   <EntityType Name="alumno">
     <Key>
       <PropertyRef Name="id_alumno" />
     </Key>
     <Property Name="id_alumno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="carnet" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="nombres" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="apellidos" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="carnet" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="nombres" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="apellidos" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="id_sexo" Type="Int32" Nullable="false" />
     <Property Name="telefono" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
     <Property Name="email" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="sexo" Relationship="Self.alumno_id_sexo_fkey" FromRole="alumno" ToRole="sexo" />
-    <NavigationProperty Name="asign_alumno" Relationship="Self.asign_alumno_id_alumno_fkey" FromRole="alumno" ToRole="asign_alumno" />
-    <NavigationProperty Name="calificacion" Relationship="Self.calificacion_id_alumno_fkey" FromRole="alumno" ToRole="calificacion" />
+    <NavigationProperty Name="sexo" Relationship="GestionNotasCunorModel.alumno_id_sexo_fkey" FromRole="alumno" ToRole="sexo" />
+    <NavigationProperty Name="asign_alumno" Relationship="GestionNotasCunorModel.asign_alumno_id_alumno_fkey" FromRole="alumno" ToRole="asign_alumno" />
+    <NavigationProperty Name="calificacion" Relationship="GestionNotasCunorModel.calificacion_id_alumno_fkey" FromRole="alumno" ToRole="calificacion" />
   </EntityType>
   <EntityType Name="asign_alumno">
     <Key>
@@ -38,25 +101,26 @@
     <Property Name="ciclo" Type="Int32" Nullable="false" />
     <Property Name="anio" Type="Int32" Nullable="false" />
     <Property Name="fecha" Type="DateTime" Precision="0" />
-    <NavigationProperty Name="alumno" Relationship="Self.asign_alumno_id_alumno_fkey" FromRole="asign_alumno" ToRole="alumno" />
-    <NavigationProperty Name="detalle_asign" Relationship="Self.detalle_asign_id_asign_alumno_fkey" FromRole="asign_alumno" ToRole="detalle_asign" />
+    <Property Name="id_carrera" Type="Int32" />
+    <NavigationProperty Name="alumno" Relationship="GestionNotasCunorModel.asign_alumno_id_alumno_fkey" FromRole="asign_alumno" ToRole="alumno" />
+    <NavigationProperty Name="carrera" Relationship="GestionNotasCunorModel.asign_alumno_id_carrera_fkey" FromRole="asign_alumno" ToRole="carrera" />
+    <NavigationProperty Name="detalle_asign" Relationship="GestionNotasCunorModel.detalle_asign_id_asign_alumno_fkey" FromRole="asign_alumno" ToRole="detalle_asign" />
   </EntityType>
   <EntityType Name="asign_curso">
     <Key>
-      <PropertyRef Name="id_carrera" />
-      <PropertyRef Name="id_curso" />
-      <PropertyRef Name="seccion" />
+      <PropertyRef Name="id_asign_curso" />
     </Key>
     <Property Name="id_carrera" Type="Int32" Nullable="false" />
     <Property Name="id_curso" Type="Int32" Nullable="false" />
-    <Property Name="seccion" Type="String" MaxLength="1" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="seccion" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="true" />
     <Property Name="id_catedratico" Type="Int32" Nullable="false" />
     <Property Name="salon" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="actividad" Relationship="Self.actividad_id_carrera_fkey" FromRole="asign_curso" ToRole="actividad" />
-    <NavigationProperty Name="carrera" Relationship="Self.asign_curso_id_carrera_fkey" FromRole="asign_curso" ToRole="carrera" />
-    <NavigationProperty Name="catedratico" Relationship="Self.asign_curso_id_catedratico_fkey" FromRole="asign_curso" ToRole="catedratico" />
-    <NavigationProperty Name="curso" Relationship="Self.asign_curso_id_curso_fkey" FromRole="asign_curso" ToRole="curso" />
-    <NavigationProperty Name="detalle_asign" Relationship="Self.detalle_asign_id_carrera_fkey" FromRole="asign_curso" ToRole="detalle_asign" />
+    <Property Name="id_asign_curso" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="actividad" Relationship="GestionNotasCunorModel.actividad_id_asign_curso_fkey" FromRole="asign_curso" ToRole="actividad" />
+    <NavigationProperty Name="carrera" Relationship="GestionNotasCunorModel.asign_curso_id_carrera_fkey" FromRole="asign_curso" ToRole="carrera" />
+    <NavigationProperty Name="catedratico" Relationship="GestionNotasCunorModel.asign_curso_id_catedratico_fkey" FromRole="asign_curso" ToRole="catedratico" />
+    <NavigationProperty Name="curso" Relationship="GestionNotasCunorModel.asign_curso_id_curso_fkey" FromRole="asign_curso" ToRole="curso" />
+    <NavigationProperty Name="detalle_asign" Relationship="GestionNotasCunorModel.detalle_asign_id_asign_curso_fkey" FromRole="asign_curso" ToRole="detalle_asign" />
   </EntityType>
   <EntityType Name="calificacion">
     <Key>
@@ -66,54 +130,55 @@
     <Property Name="id_actividad" Type="Int32" Nullable="false" />
     <Property Name="id_alumno" Type="Int32" Nullable="false" />
     <Property Name="calif_obtenida" Type="Decimal" Precision="4" Scale="2" />
-    <NavigationProperty Name="actividad" Relationship="Self.calificacion_id_actividad_fkey" FromRole="calificacion" ToRole="actividad" />
-    <NavigationProperty Name="alumno" Relationship="Self.calificacion_id_alumno_fkey" FromRole="calificacion" ToRole="alumno" />
+    <NavigationProperty Name="actividad" Relationship="GestionNotasCunorModel.calificacion_id_actividad_fkey" FromRole="calificacion" ToRole="actividad" />
+    <NavigationProperty Name="alumno" Relationship="GestionNotasCunorModel.calificacion_id_alumno_fkey" FromRole="calificacion" ToRole="alumno" />
   </EntityType>
   <EntityType Name="caracteristica">
     <Key>
       <PropertyRef Name="id_caracteristica" />
     </Key>
     <Property Name="id_caracteristica" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="nom_caracteristica" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
-    <NavigationProperty Name="curso" Relationship="Self.curso_id_caracteristica_fkey" FromRole="caracteristica" ToRole="curso" />
+    <Property Name="nom_caracteristica" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="curso" Relationship="GestionNotasCunorModel.curso_id_caracteristica_fkey" FromRole="caracteristica" ToRole="curso" />
   </EntityType>
   <EntityType Name="carrera">
     <Key>
       <PropertyRef Name="id_carrera" />
     </Key>
     <Property Name="id_carrera" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="nom_carrera" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <NavigationProperty Name="asign_curso" Relationship="Self.asign_curso_id_carrera_fkey" FromRole="carrera" ToRole="asign_curso" />
+    <Property Name="nom_carrera" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="asign_alumno" Relationship="GestionNotasCunorModel.asign_alumno_id_carrera_fkey" FromRole="carrera" ToRole="asign_alumno" />
+    <NavigationProperty Name="asign_curso" Relationship="GestionNotasCunorModel.asign_curso_id_carrera_fkey" FromRole="carrera" ToRole="asign_curso" />
   </EntityType>
   <EntityType Name="catedratico">
     <Key>
       <PropertyRef Name="id_catedratico" />
     </Key>
     <Property Name="id_catedratico" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="colegiado" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="nombres" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="apellidos" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="colegiado" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="nombres" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="apellidos" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="id_sexo" Type="Int32" Nullable="false" />
     <Property Name="telefono" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
     <Property Name="email" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
     <Property Name="profesion" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="asign_curso" Relationship="Self.asign_curso_id_catedratico_fkey" FromRole="catedratico" ToRole="asign_curso" />
-    <NavigationProperty Name="sexo" Relationship="Self.catedratico_id_sexo_fkey" FromRole="catedratico" ToRole="sexo" />
+    <NavigationProperty Name="asign_curso" Relationship="GestionNotasCunorModel.asign_curso_id_catedratico_fkey" FromRole="catedratico" ToRole="asign_curso" />
+    <NavigationProperty Name="sexo" Relationship="GestionNotasCunorModel.catedratico_id_sexo_fkey" FromRole="catedratico" ToRole="sexo" />
   </EntityType>
   <EntityType Name="curso">
     <Key>
       <PropertyRef Name="id_curso" />
     </Key>
     <Property Name="id_curso" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="cod_curso" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="nom_curso" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="cod_curso" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="nom_curso" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="creditos" Type="Int32" />
     <Property Name="no_ciclo" Type="Int32" Nullable="false" />
     <Property Name="cod_prerrequisito" Type="Int32" />
     <Property Name="creditos_necesarios" Type="Int32" />
     <Property Name="id_caracteristica" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="asign_curso" Relationship="Self.asign_curso_id_curso_fkey" FromRole="curso" ToRole="asign_curso" />
-    <NavigationProperty Name="caracteristica" Relationship="Self.curso_id_caracteristica_fkey" FromRole="curso" ToRole="caracteristica" />
+    <NavigationProperty Name="asign_curso" Relationship="GestionNotasCunorModel.asign_curso_id_curso_fkey" FromRole="curso" ToRole="asign_curso" />
+    <NavigationProperty Name="caracteristica" Relationship="GestionNotasCunorModel.curso_id_caracteristica_fkey" FromRole="curso" ToRole="caracteristica" />
   </EntityType>
   <EntityType Name="detalle_asign">
     <Key>
@@ -121,40 +186,34 @@
     </Key>
     <Property Name="id_detalle_asign" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="id_asign_alumno" Type="Int32" Nullable="false" />
-    <Property Name="id_carrera" Type="Int32" Nullable="false" />
-    <Property Name="id_curso" Type="Int32" Nullable="false" />
-    <Property Name="seccion" Type="String" MaxLength="1" FixedLength="true" Unicode="true" Nullable="false" />
-    <NavigationProperty Name="asign_alumno" Relationship="Self.detalle_asign_id_asign_alumno_fkey" FromRole="detalle_asign" ToRole="asign_alumno" />
-    <NavigationProperty Name="asign_curso" Relationship="Self.detalle_asign_id_carrera_fkey" FromRole="detalle_asign" ToRole="asign_curso" />
+    <Property Name="id_asign_curso" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="asign_alumno" Relationship="GestionNotasCunorModel.detalle_asign_id_asign_alumno_fkey" FromRole="detalle_asign" ToRole="asign_alumno" />
+    <NavigationProperty Name="asign_curso" Relationship="GestionNotasCunorModel.detalle_asign_id_asign_curso_fkey" FromRole="detalle_asign" ToRole="asign_curso" />
   </EntityType>
   <EntityType Name="sexo">
     <Key>
       <PropertyRef Name="id_sexo" />
     </Key>
     <Property Name="id_sexo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="nom_sexo" Type="String" MaxLength="9" FixedLength="false" Unicode="true" Nullable="false" />
-    <NavigationProperty Name="alumno" Relationship="Self.alumno_id_sexo_fkey" FromRole="sexo" ToRole="alumno" />
-    <NavigationProperty Name="catedratico" Relationship="Self.catedratico_id_sexo_fkey" FromRole="sexo" ToRole="catedratico" />
+    <Property Name="nom_sexo" Type="String" Nullable="false" MaxLength="9" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="alumno" Relationship="GestionNotasCunorModel.alumno_id_sexo_fkey" FromRole="sexo" ToRole="alumno" />
+    <NavigationProperty Name="catedratico" Relationship="GestionNotasCunorModel.catedratico_id_sexo_fkey" FromRole="sexo" ToRole="catedratico" />
   </EntityType>
-  <Association Name="actividad_id_carrera_fkey">
-    <End Role="asign_curso" Type="Self.asign_curso" Multiplicity="1" />
-    <End Role="actividad" Type="Self.actividad" Multiplicity="*" />
+  <Association Name="actividad_id_asign_curso_fkey">
+    <End Type="GestionNotasCunorModel.asign_curso" Role="asign_curso" Multiplicity="0..1" />
+    <End Type="GestionNotasCunorModel.actividad" Role="actividad" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="asign_curso">
-        <PropertyRef Name="id_carrera" />
-        <PropertyRef Name="id_curso" />
-        <PropertyRef Name="seccion" />
+        <PropertyRef Name="id_asign_curso" />
       </Principal>
       <Dependent Role="actividad">
-        <PropertyRef Name="id_carrera" />
-        <PropertyRef Name="id_curso" />
-        <PropertyRef Name="seccion" />
+        <PropertyRef Name="id_asign_curso" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <Association Name="calificacion_id_actividad_fkey">
-    <End Role="actividad" Type="Self.actividad" Multiplicity="1" />
-    <End Role="calificacion" Type="Self.calificacion" Multiplicity="*" />
+    <End Type="GestionNotasCunorModel.actividad" Role="actividad" Multiplicity="1" />
+    <End Type="GestionNotasCunorModel.calificacion" Role="calificacion" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="actividad">
         <PropertyRef Name="id_actividad" />
@@ -165,8 +224,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="alumno_id_sexo_fkey">
-    <End Role="sexo" Type="Self.sexo" Multiplicity="1" />
-    <End Role="alumno" Type="Self.alumno" Multiplicity="*" />
+    <End Type="GestionNotasCunorModel.sexo" Role="sexo" Multiplicity="1" />
+    <End Type="GestionNotasCunorModel.alumno" Role="alumno" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="sexo">
         <PropertyRef Name="id_sexo" />
@@ -177,8 +236,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="asign_alumno_id_alumno_fkey">
-    <End Role="alumno" Type="Self.alumno" Multiplicity="1" />
-    <End Role="asign_alumno" Type="Self.asign_alumno" Multiplicity="*" />
+    <End Type="GestionNotasCunorModel.alumno" Role="alumno" Multiplicity="1" />
+    <End Type="GestionNotasCunorModel.asign_alumno" Role="asign_alumno" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="alumno">
         <PropertyRef Name="id_alumno" />
@@ -189,8 +248,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="calificacion_id_alumno_fkey">
-    <End Role="alumno" Type="Self.alumno" Multiplicity="1" />
-    <End Role="calificacion" Type="Self.calificacion" Multiplicity="*" />
+    <End Type="GestionNotasCunorModel.alumno" Role="alumno" Multiplicity="1" />
+    <End Type="GestionNotasCunorModel.calificacion" Role="calificacion" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="alumno">
         <PropertyRef Name="id_alumno" />
@@ -200,9 +259,21 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="asign_alumno_id_carrera_fkey">
+    <End Type="GestionNotasCunorModel.carrera" Role="carrera" Multiplicity="0..1" />
+    <End Type="GestionNotasCunorModel.asign_alumno" Role="asign_alumno" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="carrera">
+        <PropertyRef Name="id_carrera" />
+      </Principal>
+      <Dependent Role="asign_alumno">
+        <PropertyRef Name="id_carrera" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="detalle_asign_id_asign_alumno_fkey">
-    <End Role="asign_alumno" Type="Self.asign_alumno" Multiplicity="1" />
-    <End Role="detalle_asign" Type="Self.detalle_asign" Multiplicity="*" />
+    <End Type="GestionNotasCunorModel.asign_alumno" Role="asign_alumno" Multiplicity="1" />
+    <End Type="GestionNotasCunorModel.detalle_asign" Role="detalle_asign" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="asign_alumno">
         <PropertyRef Name="id_asign_alumno" />
@@ -213,8 +284,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="asign_curso_id_carrera_fkey">
-    <End Role="carrera" Type="Self.carrera" Multiplicity="1" />
-    <End Role="asign_curso" Type="Self.asign_curso" Multiplicity="*" />
+    <End Type="GestionNotasCunorModel.carrera" Role="carrera" Multiplicity="1" />
+    <End Type="GestionNotasCunorModel.asign_curso" Role="asign_curso" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="carrera">
         <PropertyRef Name="id_carrera" />
@@ -225,8 +296,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="asign_curso_id_catedratico_fkey">
-    <End Role="catedratico" Type="Self.catedratico" Multiplicity="1" />
-    <End Role="asign_curso" Type="Self.asign_curso" Multiplicity="*" />
+    <End Type="GestionNotasCunorModel.catedratico" Role="catedratico" Multiplicity="1" />
+    <End Type="GestionNotasCunorModel.asign_curso" Role="asign_curso" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="catedratico">
         <PropertyRef Name="id_catedratico" />
@@ -237,8 +308,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="asign_curso_id_curso_fkey">
-    <End Role="curso" Type="Self.curso" Multiplicity="1" />
-    <End Role="asign_curso" Type="Self.asign_curso" Multiplicity="*" />
+    <End Type="GestionNotasCunorModel.curso" Role="curso" Multiplicity="1" />
+    <End Type="GestionNotasCunorModel.asign_curso" Role="asign_curso" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="curso">
         <PropertyRef Name="id_curso" />
@@ -248,25 +319,21 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="detalle_asign_id_carrera_fkey">
-    <End Role="asign_curso" Type="Self.asign_curso" Multiplicity="1" />
-    <End Role="detalle_asign" Type="Self.detalle_asign" Multiplicity="*" />
+  <Association Name="detalle_asign_id_asign_curso_fkey">
+    <End Type="GestionNotasCunorModel.asign_curso" Role="asign_curso" Multiplicity="1" />
+    <End Type="GestionNotasCunorModel.detalle_asign" Role="detalle_asign" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="asign_curso">
-        <PropertyRef Name="id_carrera" />
-        <PropertyRef Name="id_curso" />
-        <PropertyRef Name="seccion" />
+        <PropertyRef Name="id_asign_curso" />
       </Principal>
       <Dependent Role="detalle_asign">
-        <PropertyRef Name="id_carrera" />
-        <PropertyRef Name="id_curso" />
-        <PropertyRef Name="seccion" />
+        <PropertyRef Name="id_asign_curso" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <Association Name="curso_id_caracteristica_fkey">
-    <End Role="caracteristica" Type="Self.caracteristica" Multiplicity="1" />
-    <End Role="curso" Type="Self.curso" Multiplicity="*" />
+    <End Type="GestionNotasCunorModel.caracteristica" Role="caracteristica" Multiplicity="1" />
+    <End Type="GestionNotasCunorModel.curso" Role="curso" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="caracteristica">
         <PropertyRef Name="id_caracteristica" />
@@ -277,8 +344,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="catedratico_id_sexo_fkey">
-    <End Role="sexo" Type="Self.sexo" Multiplicity="1" />
-    <End Role="catedratico" Type="Self.catedratico" Multiplicity="*" />
+    <End Type="GestionNotasCunorModel.sexo" Role="sexo" Multiplicity="1" />
+    <End Type="GestionNotasCunorModel.catedratico" Role="catedratico" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="sexo">
         <PropertyRef Name="id_sexo" />
@@ -288,65 +355,4 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="ctxNotasCunor" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="actividad" EntityType="Self.actividad" />
-    <EntitySet Name="alumno" EntityType="Self.alumno" />
-    <EntitySet Name="asign_alumno" EntityType="Self.asign_alumno" />
-    <EntitySet Name="asign_curso" EntityType="Self.asign_curso" />
-    <EntitySet Name="calificacion" EntityType="Self.calificacion" />
-    <EntitySet Name="caracteristica" EntityType="Self.caracteristica" />
-    <EntitySet Name="carrera" EntityType="Self.carrera" />
-    <EntitySet Name="catedratico" EntityType="Self.catedratico" />
-    <EntitySet Name="curso" EntityType="Self.curso" />
-    <EntitySet Name="detalle_asign" EntityType="Self.detalle_asign" />
-    <EntitySet Name="sexo" EntityType="Self.sexo" />
-    <AssociationSet Name="actividad_id_carrera_fkey" Association="Self.actividad_id_carrera_fkey">
-      <End Role="asign_curso" EntitySet="asign_curso" />
-      <End Role="actividad" EntitySet="actividad" />
-    </AssociationSet>
-    <AssociationSet Name="calificacion_id_actividad_fkey" Association="Self.calificacion_id_actividad_fkey">
-      <End Role="actividad" EntitySet="actividad" />
-      <End Role="calificacion" EntitySet="calificacion" />
-    </AssociationSet>
-    <AssociationSet Name="alumno_id_sexo_fkey" Association="Self.alumno_id_sexo_fkey">
-      <End Role="sexo" EntitySet="sexo" />
-      <End Role="alumno" EntitySet="alumno" />
-    </AssociationSet>
-    <AssociationSet Name="asign_alumno_id_alumno_fkey" Association="Self.asign_alumno_id_alumno_fkey">
-      <End Role="alumno" EntitySet="alumno" />
-      <End Role="asign_alumno" EntitySet="asign_alumno" />
-    </AssociationSet>
-    <AssociationSet Name="calificacion_id_alumno_fkey" Association="Self.calificacion_id_alumno_fkey">
-      <End Role="alumno" EntitySet="alumno" />
-      <End Role="calificacion" EntitySet="calificacion" />
-    </AssociationSet>
-    <AssociationSet Name="detalle_asign_id_asign_alumno_fkey" Association="Self.detalle_asign_id_asign_alumno_fkey">
-      <End Role="asign_alumno" EntitySet="asign_alumno" />
-      <End Role="detalle_asign" EntitySet="detalle_asign" />
-    </AssociationSet>
-    <AssociationSet Name="asign_curso_id_carrera_fkey" Association="Self.asign_curso_id_carrera_fkey">
-      <End Role="carrera" EntitySet="carrera" />
-      <End Role="asign_curso" EntitySet="asign_curso" />
-    </AssociationSet>
-    <AssociationSet Name="asign_curso_id_catedratico_fkey" Association="Self.asign_curso_id_catedratico_fkey">
-      <End Role="catedratico" EntitySet="catedratico" />
-      <End Role="asign_curso" EntitySet="asign_curso" />
-    </AssociationSet>
-    <AssociationSet Name="asign_curso_id_curso_fkey" Association="Self.asign_curso_id_curso_fkey">
-      <End Role="curso" EntitySet="curso" />
-      <End Role="asign_curso" EntitySet="asign_curso" />
-    </AssociationSet>
-    <AssociationSet Name="detalle_asign_id_carrera_fkey" Association="Self.detalle_asign_id_carrera_fkey">
-      <End Role="asign_curso" EntitySet="asign_curso" />
-      <End Role="detalle_asign" EntitySet="detalle_asign" />
-    </AssociationSet>
-    <AssociationSet Name="curso_id_caracteristica_fkey" Association="Self.curso_id_caracteristica_fkey">
-      <End Role="caracteristica" EntitySet="caracteristica" />
-      <End Role="curso" EntitySet="curso" />
-    </AssociationSet>
-    <AssociationSet Name="catedratico_id_sexo_fkey" Association="Self.catedratico_id_sexo_fkey">
-      <End Role="sexo" EntitySet="sexo" />
-      <End Role="catedratico" EntitySet="catedratico" />
-    </AssociationSet>
-  </EntityContainer>
 </Schema>

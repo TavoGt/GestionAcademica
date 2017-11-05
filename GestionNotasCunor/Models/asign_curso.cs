@@ -26,6 +26,7 @@ namespace GestionNotasCunor.Models
         public string seccion { get; set; }
         public int id_catedratico { get; set; }
         public string salon { get; set; }
+        public int id_asign_curso { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<actividad> actividad { get; set; }

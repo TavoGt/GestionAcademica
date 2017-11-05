@@ -36,105 +36,87 @@
         </div>
 
         <div class="form-group col-md-3">
-            @Html.Label("Año", new { @class = "control-label col-md-12" })
-            @*@Html.LabelFor(model => model.anio, htmlAttributes: new { @class = "control-label col-md-2" })*@
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.anio, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.anio, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group col-md-3">
-            @Html.Label("Fecha", new { @class = "control-label col-md-12" })
+            @Html.Label("Carreras", new { @class = "control-label col-md-12" })
             @*@Html.LabelFor(model => model.fecha, htmlAttributes: new { @class = "control-label col-md-2" })*@
             <div class="col-md-10">
-                @Html.EditorFor(model => model.fecha, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.fecha, "", new { @class = "text-danger" })
+                @Html.DropDownList("id_carrera", null, htmlAttributes: new { @class = "form-control"})
+                <span id="span1"></span>
             </div>
         </div>
 
         <div class="form-group col-md-3">
-            @Html.Label("Carrera", new { @class = "control-label col-md-12" })
-            <div class="col-md-10">
-                @Html.DropDownList("id_carrera", null, htmlAttributes: new { @class = "form-control combobox" })
-            </div>
-        </div>
-        
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <button type="button" class="btn btn-primary" onclick="busqueda();">Buscar</button>
-                <input type="submit" value="Crear" class="btn btn-default" />
-            </div>
+            @Html.Label("Cursos", new { @class = "control-label col-md-12" })
+            @*@Html.LabelFor(model => model.fecha, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            @*<div class="col-md-10" id="CursosID">*@
+                @*@Html.DropDownList("id_asign_curso", null, htmlAttributes: new { @class = "form-control combobox"})*@
+            @*</div>*@
+
+            @*<select id="St" class="form-control col-md-10">*@
+            <select id ="St" class="form-control St" name="detalle_asign[0].id_asign_curso">
+
+            </select>
         </div>
     </div>
 
-    <div class="col-md-12">
-        <button type="button" class="btn btn-success" onclick="agregarLinea()">Agregar</button>
-        <br />
+    @*<button type="button" class="btn btn-primary" onclick="busqueda();">Buscar</button>*@
+
+    <div class="row">
+        <button type="button" class="btn btn-success" onclick="agregarLinea();">Agregar Línea</button>
         <table class="table table-bordered table-condensed table-hover" id="tblDetalles">
             <thead>
                 <tr>
-                    <th>Carrera</th>
                     <th>Curso</th>
-                    <th>Sección</th>
                 </tr>
             </thead>
             <tbody>
                 @*<tr>
-                    <td><input type="text" class="form-control" name="detalle_asign[0].id_carrera" /></td>
                     <td><input type="text" class="form-control" name="detalle_asign[0].id_curso" /></td>
-                    <td><input type="text" class="form-control" name="detalle_asign[0].seccion" /></td>
                 </tr>*@
             </tbody>
         </table>
     </div>
+
+    <div class="form-group col-md-12">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
 }
+
 
 <div>
     @Html.ActionLink("Lista de asignaciones", "Index")
 </div>
 
+@* Referenciando la librería de jqery para el ComboBox con autocompletado *@
+@*<script src="~/Scripts/jquery.combobox.js"></script>*@
+<script src="~/Scripts/jquery-3.2.1.min.js"></script>
+
+<script>
+    $(function () {
+        $("#id_carrera").change(function () {
+            $.get("/AsignacionAlumno/busqCurso", { idCarrera: $("#id_carrera").val() }, function (data) {
+                $("#St").empty();
+                $.each(data, function (index, row) {
+                    $("#St").append("<option value ='"+row.id_asignCurso+"' >"+row.nom_curso+"</option>")
+                });
+            });
+        });
+    });
+</script>
+
 @section Scripts{
-    <script src="~/Scripts/jquery.combobox.js"></script>
-
     <script type="text/javascript">
+        @*var opCursos = '@foreach (var itm in ViewBag.lista_cursos) {<text><option value="@itm.id_asign_curso">@itm.nom_curso</option></text>}';*@
         var cont = 0;
-        var opCarreras = '@foreach (var itm in ViewBag.lista_carreras) {<text><option value="@itm.id_carrera">@itm.nom_carrera</option></text>}';
-        function agregarLinea() {
-            linea = '<tr>'+
-                    '<td><select class="form-control" name="detalle_asign[' + cont + '].id_carrera"> '+opCarreras+'</select></td>'+
-                    '<td><input type="text" class="form-control" name="detalle_asign[' + cont + '].id_curso" /></td>' +
-                    '<td><input type="text" class="form-control" name="detalle_asign[' + cont + '].seccion" /></td>' +
-                '</tr>';
 
+        function agregarLinea() {
+            linea = '<tr>' +
+                    //'<td><select class="form-control" name="detalle_asign[' + cont + '].id_curso"> ' + opCursos + '</select></td>' +
+                    //'<td><select class="form-control" name="detalle_asign[' + cont + '].id_asign_curso"> ' + opCursos + '</select></td>' +
+                '</tr>';
             $('#tblDetalles > tbody').append(linea);
             cont++;
-        }
-
-        var curso = {};
-        function busqueda() {
-            var codigo = $("#id_carrera").val();
-
-            $.ajax({
-                dataType: "json",
-                url: "/AsignacionAlumno/busqCurso",
-                data: { idCarrera: codigo },
-                success: function (obj) {
-                    curso = obj;
-
-                    for (var d = 0; d < curso.length; d++) {
-                        var linea = '<tr>' +
-                           '<td><select class="form-control" name="detalle_asign[' + cont + '].id_carrera"> ' + opCarreras + '</select></td>' +
-                           '<td><input type="text" class="form-control" name="detalle_asign[' + cont + '].id_curso" value="'+curso[d].nom_curso+'"/></td>' +
-                           '<td><input type="text" class="form-control" name="detalle_asign[' + cont + '].seccion" /></td>' +
-                       '</tr>';
-
-                        $('#tblDetalles > tbody').append(linea);
-                        cont++;
-                    }
-                    console.log(obj);
-                }
-            });
         }
     </script>
 }

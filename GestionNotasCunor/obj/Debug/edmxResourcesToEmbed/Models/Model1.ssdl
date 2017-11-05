@@ -8,9 +8,7 @@
     <Property Name="nom_actividad" Type="varchar" MaxLength="45" Nullable="false" />
     <Property Name="valor" Type="numeric" Precision="4" Scale="2" Nullable="false" />
     <Property Name="fecha" Type="date" />
-    <Property Name="id_carrera" Type="int4" Nullable="false" />
-    <Property Name="id_curso" Type="int4" Nullable="false" />
-    <Property Name="seccion" Type="bpchar" MaxLength="1" Nullable="false" />
+    <Property Name="id_asign_curso" Type="int4" />
   </EntityType>
   <EntityType Name="alumno">
     <Key>
@@ -33,18 +31,18 @@
     <Property Name="ciclo" Type="int4" Nullable="false" />
     <Property Name="anio" Type="int4" Nullable="false" />
     <Property Name="fecha" Type="date" />
+    <Property Name="id_carrera" Type="int4" />
   </EntityType>
   <EntityType Name="asign_curso">
     <Key>
-      <PropertyRef Name="id_carrera" />
-      <PropertyRef Name="id_curso" />
-      <PropertyRef Name="seccion" />
+      <PropertyRef Name="id_asign_curso" />
     </Key>
     <Property Name="id_carrera" Type="int4" Nullable="false" />
     <Property Name="id_curso" Type="int4" Nullable="false" />
     <Property Name="seccion" Type="bpchar" MaxLength="1" Nullable="false" />
     <Property Name="id_catedratico" Type="int4" Nullable="false" />
     <Property Name="salon" Type="varchar" MaxLength="5" />
+    <Property Name="id_asign_curso" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
   </EntityType>
   <EntityType Name="calificacion">
     <Key>
@@ -101,9 +99,7 @@
     </Key>
     <Property Name="id_detalle_asign" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="id_asign_alumno" Type="int4" Nullable="false" />
-    <Property Name="id_carrera" Type="int4" Nullable="false" />
-    <Property Name="id_curso" Type="int4" Nullable="false" />
-    <Property Name="seccion" Type="bpchar" MaxLength="1" Nullable="false" />
+    <Property Name="id_asign_curso" Type="int4" Nullable="false" />
   </EntityType>
   <EntityType Name="sexo">
     <Key>
@@ -112,19 +108,15 @@
     <Property Name="id_sexo" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="nom_sexo" Type="varchar" MaxLength="9" Nullable="false" />
   </EntityType>
-  <Association Name="actividad_id_carrera_fkey">
-    <End Role="asign_curso" Type="Self.asign_curso" Multiplicity="1" />
+  <Association Name="actividad_id_asign_curso_fkey">
+    <End Role="asign_curso" Type="Self.asign_curso" Multiplicity="0..1" />
     <End Role="actividad" Type="Self.actividad" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="asign_curso">
-        <PropertyRef Name="id_carrera" />
-        <PropertyRef Name="id_curso" />
-        <PropertyRef Name="seccion" />
+        <PropertyRef Name="id_asign_curso" />
       </Principal>
       <Dependent Role="actividad">
-        <PropertyRef Name="id_carrera" />
-        <PropertyRef Name="id_curso" />
-        <PropertyRef Name="seccion" />
+        <PropertyRef Name="id_asign_curso" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -149,6 +141,18 @@
       </Principal>
       <Dependent Role="asign_alumno">
         <PropertyRef Name="id_alumno" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="asign_alumno_id_carrera_fkey">
+    <End Role="carrera" Type="Self.carrera" Multiplicity="0..1" />
+    <End Role="asign_alumno" Type="Self.asign_alumno" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="carrera">
+        <PropertyRef Name="id_carrera" />
+      </Principal>
+      <Dependent Role="asign_alumno">
+        <PropertyRef Name="id_carrera" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -248,19 +252,15 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="detalle_asign_id_carrera_fkey">
+  <Association Name="detalle_asign_id_asign_curso_fkey">
     <End Role="asign_curso" Type="Self.asign_curso" Multiplicity="1" />
     <End Role="detalle_asign" Type="Self.detalle_asign" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="asign_curso">
-        <PropertyRef Name="id_carrera" />
-        <PropertyRef Name="id_curso" />
-        <PropertyRef Name="seccion" />
+        <PropertyRef Name="id_asign_curso" />
       </Principal>
       <Dependent Role="detalle_asign">
-        <PropertyRef Name="id_carrera" />
-        <PropertyRef Name="id_curso" />
-        <PropertyRef Name="seccion" />
+        <PropertyRef Name="id_asign_curso" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -276,7 +276,7 @@
     <EntitySet Name="curso" EntityType="Self.curso" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="detalle_asign" EntityType="Self.detalle_asign" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sexo" EntityType="Self.sexo" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="actividad_id_carrera_fkey" Association="Self.actividad_id_carrera_fkey">
+    <AssociationSet Name="actividad_id_asign_curso_fkey" Association="Self.actividad_id_asign_curso_fkey">
       <End Role="asign_curso" EntitySet="asign_curso" />
       <End Role="actividad" EntitySet="actividad" />
     </AssociationSet>
@@ -286,6 +286,10 @@
     </AssociationSet>
     <AssociationSet Name="asign_alumno_id_alumno_fkey" Association="Self.asign_alumno_id_alumno_fkey">
       <End Role="alumno" EntitySet="alumno" />
+      <End Role="asign_alumno" EntitySet="asign_alumno" />
+    </AssociationSet>
+    <AssociationSet Name="asign_alumno_id_carrera_fkey" Association="Self.asign_alumno_id_carrera_fkey">
+      <End Role="carrera" EntitySet="carrera" />
       <End Role="asign_alumno" EntitySet="asign_alumno" />
     </AssociationSet>
     <AssociationSet Name="asign_curso_id_carrera_fkey" Association="Self.asign_curso_id_carrera_fkey">
@@ -320,7 +324,7 @@
       <End Role="asign_alumno" EntitySet="asign_alumno" />
       <End Role="detalle_asign" EntitySet="detalle_asign" />
     </AssociationSet>
-    <AssociationSet Name="detalle_asign_id_carrera_fkey" Association="Self.detalle_asign_id_carrera_fkey">
+    <AssociationSet Name="detalle_asign_id_asign_curso_fkey" Association="Self.detalle_asign_id_asign_curso_fkey">
       <End Role="asign_curso" EntitySet="asign_curso" />
       <End Role="detalle_asign" EntitySet="detalle_asign" />
     </AssociationSet>

@@ -5,29 +5,30 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="3b6dff1094bf4f10b42346ffb999bbab" Name="Diagram1">
-        <EntityTypeShape EntityType="GestionNotasCunorModel.actividad" Width="1.5" PointX="7.5" PointY="7" IsExpanded="true" />
-        <EntityTypeShape EntityType="GestionNotasCunorModel.alumno" Width="1.5" PointX="3" PointY="3.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="GestionNotasCunorModel.asign_alumno" Width="1.5" PointX="5.25" PointY="3.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="GestionNotasCunorModel.asign_curso" Width="1.5" PointX="5.25" PointY="7" IsExpanded="true" />
-        <EntityTypeShape EntityType="GestionNotasCunorModel.calificacion" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="GestionNotasCunorModel.caracteristica" Width="1.5" PointX="0.75" PointY="11.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="GestionNotasCunorModel.carrera" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="GestionNotasCunorModel.catedratico" Width="1.5" PointX="3" PointY="7" IsExpanded="true" />
-        <EntityTypeShape EntityType="GestionNotasCunorModel.curso" Width="1.5" PointX="3" PointY="11.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="GestionNotasCunorModel.detalle_asign" Width="1.5" PointX="7.5" PointY="3.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="GestionNotasCunorModel.sexo" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
-        <AssociationConnector Association="GestionNotasCunorModel.actividad_id_carrera_fkey" ManuallyRouted="false" />
-        <AssociationConnector Association="GestionNotasCunorModel.calificacion_id_actividad_fkey" ManuallyRouted="false" />
-        <AssociationConnector Association="GestionNotasCunorModel.alumno_id_sexo_fkey" ManuallyRouted="false" />
-        <AssociationConnector Association="GestionNotasCunorModel.asign_alumno_id_alumno_fkey" ManuallyRouted="false" />
-        <AssociationConnector Association="GestionNotasCunorModel.calificacion_id_alumno_fkey" ManuallyRouted="false" />
-        <AssociationConnector Association="GestionNotasCunorModel.detalle_asign_id_asign_alumno_fkey" ManuallyRouted="false" />
-        <AssociationConnector Association="GestionNotasCunorModel.asign_curso_id_carrera_fkey" ManuallyRouted="false" />
-        <AssociationConnector Association="GestionNotasCunorModel.asign_curso_id_catedratico_fkey" ManuallyRouted="false" />
-        <AssociationConnector Association="GestionNotasCunorModel.asign_curso_id_curso_fkey" ManuallyRouted="false" />
-        <AssociationConnector Association="GestionNotasCunorModel.detalle_asign_id_carrera_fkey" ManuallyRouted="false" />
-        <AssociationConnector Association="GestionNotasCunorModel.curso_id_caracteristica_fkey" ManuallyRouted="false" />
-        <AssociationConnector Association="GestionNotasCunorModel.catedratico_id_sexo_fkey" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="GestionNotasCunorModel.actividad" Width="1.5" PointX="7.5" PointY="4.25" />
+        <EntityTypeShape EntityType="GestionNotasCunorModel.alumno" Width="1.5" PointX="3" PointY="7.75" />
+        <EntityTypeShape EntityType="GestionNotasCunorModel.asign_alumno" Width="1.5" PointX="5.25" PointY="7.75" />
+        <EntityTypeShape EntityType="GestionNotasCunorModel.asign_curso" Width="1.5" PointX="5.25" PointY="3.875" />
+        <EntityTypeShape EntityType="GestionNotasCunorModel.calificacion" Width="1.5" PointX="8.25" PointY="8.25" />
+        <EntityTypeShape EntityType="GestionNotasCunorModel.caracteristica" Width="1.5" PointX="0.75" PointY="13" />
+        <EntityTypeShape EntityType="GestionNotasCunorModel.carrera" Width="1.5" PointX="3" PointY="0.75" />
+        <EntityTypeShape EntityType="GestionNotasCunorModel.catedratico" Width="1.5" PointX="3" PointY="4" />
+        <EntityTypeShape EntityType="GestionNotasCunorModel.curso" Width="1.5" PointX="3" PointY="12.25" />
+        <EntityTypeShape EntityType="GestionNotasCunorModel.detalle_asign" Width="1.5" PointX="10.5" PointY="6.25" />
+        <EntityTypeShape EntityType="GestionNotasCunorModel.sexo" Width="1.5" PointX="0.75" PointY="6.5" />
+        <AssociationConnector Association="GestionNotasCunorModel.actividad_id_asign_curso_fkey" />
+        <AssociationConnector Association="GestionNotasCunorModel.calificacion_id_actividad_fkey" />
+        <AssociationConnector Association="GestionNotasCunorModel.alumno_id_sexo_fkey" />
+        <AssociationConnector Association="GestionNotasCunorModel.asign_alumno_id_alumno_fkey" />
+        <AssociationConnector Association="GestionNotasCunorModel.calificacion_id_alumno_fkey" />
+        <AssociationConnector Association="GestionNotasCunorModel.asign_alumno_id_carrera_fkey" />
+        <AssociationConnector Association="GestionNotasCunorModel.detalle_asign_id_asign_alumno_fkey" />
+        <AssociationConnector Association="GestionNotasCunorModel.asign_curso_id_carrera_fkey" />
+        <AssociationConnector Association="GestionNotasCunorModel.asign_curso_id_catedratico_fkey" />
+        <AssociationConnector Association="GestionNotasCunorModel.asign_curso_id_curso_fkey" />
+        <AssociationConnector Association="GestionNotasCunorModel.detalle_asign_id_asign_curso_fkey" />
+        <AssociationConnector Association="GestionNotasCunorModel.curso_id_caracteristica_fkey" />
+        <AssociationConnector Association="GestionNotasCunorModel.catedratico_id_sexo_fkey" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

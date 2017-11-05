@@ -16,9 +16,7 @@ namespace GestionNotasCunor.Models
     {
         public int id_detalle_asign { get; set; }
         public int id_asign_alumno { get; set; }
-        public int id_carrera { get; set; }
-        public int id_curso { get; set; }
-        public string seccion { get; set; }
+        public int id_asign_curso { get; set; }
     
         public virtual asign_alumno asign_alumno { get; set; }
         public virtual asign_curso asign_curso { get; set; }
