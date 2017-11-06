@@ -5,14 +5,14 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<h2>Detalles</h2>
 
 <div>
-    <h4>asign_curso</h4>
+    <h4>Cursos asignados</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.salon)
+            Salón
         </dt>
 
         <dd>
@@ -20,7 +20,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.carrera.nom_carrera)
+            Carrera
         </dt>
 
         <dd>
@@ -28,7 +28,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.catedratico.colegiado)
+            Colegiado
         </dt>
 
         <dd>
@@ -36,16 +36,33 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.curso.cod_curso)
+            Catedrático
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.catedratico.nombres)
+            @Html.DisplayFor(model => model.catedratico.apellidos)
+        </dd>
+
+        <dt>
+            Código de curso
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.curso.cod_curso)
         </dd>
 
+        <dt>
+            Curso
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.curso.nom_curso)
+        </dd>
+
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Editar", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Regresar a la lista", "Index")
 </p>

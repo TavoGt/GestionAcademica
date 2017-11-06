@@ -11,11 +11,14 @@ namespace GestionNotasCunor.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class detalle_asign
     {
         public int id_detalle_asign { get; set; }
         public int id_asign_alumno { get; set; }
+
+        [Required(ErrorMessage = "Este campo es requerido")]
         public int id_asign_curso { get; set; }
     
         public virtual asign_alumno asign_alumno { get; set; }

@@ -58,10 +58,15 @@
         </div>
     </div>
 
-    @*<button type="button" class="btn btn-primary" onclick="busqueda();">Buscar</button>*@
+    <div class="row col-md-1">
+            <div class="col-md-offset-2 col-md-12">
+                <input type="submit" value="Asignar" class="btn btn-success" />
+            </div>
+        </div>
+
+    @*<button type="button" class="btn btn-success" onclick="agregarLinea();">Agregar Línea</button>*@
 
     <div class="row">
-        <button type="button" class="btn btn-success" onclick="agregarLinea();">Agregar Línea</button>
         <table class="table table-bordered table-condensed table-hover" id="tblDetalles">
             <thead>
                 <tr>
@@ -76,12 +81,6 @@
             </tbody>
         </table>
     </div>
-
-    <div class="form-group col-md-12">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Create" class="btn btn-default" />
-        </div>
-    </div>
 }
 
 
@@ -90,8 +89,8 @@
 </div>
 
 @* Referenciando la librería de jqery para el ComboBox con autocompletado *@
-@*<script src="~/Scripts/jquery.combobox.js"></script>*@
-<script src="~/Scripts/jquery-3.2.1.min.js"></script>
+<script src="~/Scripts/jquery.combobox.js"></script>
+@*<script src="~/Scripts/jquery-3.2.1.min.js"></script>*@
 
 <script>
     $(function () {

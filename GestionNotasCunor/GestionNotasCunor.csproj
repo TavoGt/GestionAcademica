@@ -210,6 +210,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ActividadesController.cs" />
     <Compile Include="Controllers\AlumnosController.cs" />
     <Compile Include="Controllers\AsignacionAlumnoController.cs" />
     <Compile Include="Controllers\AsignacionCursoController.cs" />
@@ -443,6 +444,11 @@
     <Content Include="Views\AsignacionAlumno\Edit.cshtml" />
     <Content Include="Views\AsignacionAlumno\Index.cshtml" />
     <Content Include="Views\AsignacionAlumno\Asignacion.cshtml" />
+    <Content Include="Views\Actividades\Create.cshtml" />
+    <Content Include="Views\Actividades\Delete.cshtml" />
+    <Content Include="Views\Actividades\Details.cshtml" />
+    <Content Include="Views\Actividades\Edit.cshtml" />
+    <Content Include="Views\Actividades\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

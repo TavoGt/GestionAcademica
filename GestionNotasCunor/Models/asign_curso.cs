@@ -11,7 +11,8 @@ namespace GestionNotasCunor.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class asign_curso
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,11 +21,20 @@ namespace GestionNotasCunor.Models
             this.actividad = new HashSet<actividad>();
             this.detalle_asign = new HashSet<detalle_asign>();
         }
-    
+        
+        [Required(ErrorMessage ="Este campo es requerido")]
         public int id_carrera { get; set; }
+
+        [Required(ErrorMessage = "Este campo es requerido")]
         public int id_curso { get; set; }
+
+        [Required(ErrorMessage = "Este campo es requerido")]
         public string seccion { get; set; }
+
+        [Required(ErrorMessage = "Este campo es requerido")]
         public int id_catedratico { get; set; }
+
+        [Required(ErrorMessage = "Este campo es requerido")]
         public string salon { get; set; }
         public int id_asign_curso { get; set; }
     

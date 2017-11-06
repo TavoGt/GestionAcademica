@@ -11,7 +11,8 @@ namespace GestionNotasCunor.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class carrera
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,6 +23,8 @@ namespace GestionNotasCunor.Models
         }
     
         public int id_carrera { get; set; }
+
+        [Required(ErrorMessage ="El nombre de carrera es requerido.")]
         public string nom_carrera { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

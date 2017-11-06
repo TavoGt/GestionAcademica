@@ -5,14 +5,39 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<h2>Detalles</h2>
 
 <div>
-    <h4>asign_alumno</h4>
+    <h4>Asignación Alumno</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.ciclo)
+            Carnet
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.alumno.carnet)
+        </dd>   
+        
+        <dt>
+            Alumno
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.alumno.nombres)
+            @Html.DisplayFor(model => model.alumno.apellidos)
+        </dd>     
+        
+        <dt>
+            Carrera
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.carrera.nom_carrera)
+        </dd>
+
+        <dt>
+            Ciclo
         </dt>
 
         <dd>
@@ -20,7 +45,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.anio)
+            Año
         </dt>
 
         <dd>
@@ -28,24 +53,35 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.fecha)
+            Fecha
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.fecha)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.alumno.carnet)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.alumno.carnet)
-        </dd>
-
     </dl>
 </div>
+
+
+<table class="table table-bordered table-hover table-responsive">
+    <thead>
+        <tr>
+            <th>Código</th>
+            <th>Curso</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{ foreach(var item in Model.detalle_asign) {
+                <tr>
+                    <td>@item.asign_curso.curso.cod_curso</td>
+                    <td>@item.asign_curso.curso.nom_curso</td>
+                </tr>
+        }}
+    </tbody>
+</table>
+
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id_asign_alumno }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Editar", "Edit", new { id = Model.id_asign_alumno }) |
+    @Html.ActionLink("Lista de asignaciones", "Index")
 </p>
