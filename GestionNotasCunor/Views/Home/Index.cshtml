@@ -1,31 +1,65 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
+<link href="~/Content/estilos.css" rel="stylesheet" />
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+<body>
+    <div class="text-primary text-center">
+        <h1>Control Académico - Centro Universitario del Norte CUNOR</h1>
+    </div>
+    <div class="main">
+        <div class="slides text-center">
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+            <img src="~/img/4.jpg" alt"">
+            <img src="~/img/3.jpg" alt"">
+            <img src="~/img/2.jpg" alt"">
+            <img src="~/img/1.jpg" alt"">
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+
+    @section Scripts{
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="~/Scripts/jquery.slides.js"></script>
+    
+        <script>
+        $(function(){
+            $(".slides").slidesjs({
+                width: 1200,
+                height: 200,
+                play: {
+
+                active: false,
+                // [boolean] Generate the play and stop buttons.
+                // You cannot use your own buttons. Sorry.
+                effect: "slide",
+                // [string] Can be either "slide" or "fade".
+                interval: 5000,
+                // [number] Time spent on each slide in milliseconds.
+                auto: true,
+                // [boolean] Start playing the slideshow on load.
+                swap: true,
+                // [boolean] show/hide stop and play buttons
+                pauseOnHover: true,
+                // [boolean] pause a playing slideshow on hover
+                restartDelay: 2500
+                // [number] restart delay on inactive slideshow
+
+            }
+      });
+    });
+        </script>
+    }
+    <div class="btn-group-vertical pull-left jumbotron col-md-4">
+        <button type="button" class="btn btn-primary">Ir a X</button>
+        <button type="button" class="btn btn-primary">Ver Notas</button>
+        <button type="button" class="btn btn-primary">Agregar Notas</button>
+        <button type="button" class="btn btn-primary">Ver nuevos Eventos</button>
+        <button type="button" class="btn btn-primary">Cursos</button>
+        <button type="button" class="btn btn-primary">Eliminar registros :v</button>
+
     </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+
+    <center>
+        <img src="~/img/logo.png" class="img-responsive img-circle " width="600" height="600">
+    </center>
+</body>
