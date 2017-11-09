@@ -29,12 +29,12 @@ namespace GestionNotasCunor.Models
         public virtual DbSet<alumno> alumno { get; set; }
         public virtual DbSet<asign_alumno> asign_alumno { get; set; }
         public virtual DbSet<asign_curso> asign_curso { get; set; }
-        public virtual DbSet<calificacion> calificacion { get; set; }
         public virtual DbSet<caracteristica> caracteristica { get; set; }
         public virtual DbSet<carrera> carrera { get; set; }
         public virtual DbSet<catedratico> catedratico { get; set; }
         public virtual DbSet<curso> curso { get; set; }
         public virtual DbSet<detalle_asign> detalle_asign { get; set; }
         public virtual DbSet<sexo> sexo { get; set; }
+        public virtual DbSet<calificacion> calificacion { get; set; }
     }
 }

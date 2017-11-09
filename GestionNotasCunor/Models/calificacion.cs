@@ -14,9 +14,10 @@ namespace GestionNotasCunor.Models
     
     public partial class calificacion
     {
-        public int id_actividad { get; set; }
-        public int id_alumno { get; set; }
-        public Nullable<decimal> calif_obtenida { get; set; }
+        public int id_calificacion { get; set; }
+        public Nullable<int> id_actividad { get; set; }
+        public Nullable<int> id_alumno { get; set; }
+        public Nullable<decimal> cal_obtenida { get; set; }
     
         public virtual actividad actividad { get; set; }
         public virtual alumno alumno { get; set; }

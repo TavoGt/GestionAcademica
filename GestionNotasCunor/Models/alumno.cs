@@ -11,8 +11,7 @@ namespace GestionNotasCunor.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class alumno
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -23,23 +22,12 @@ namespace GestionNotasCunor.Models
         }
     
         public int id_alumno { get; set; }
-
-        [Required(ErrorMessage = "El Carnet es requerido")]
         public string carnet { get; set; }
-
-        [Required(ErrorMessage = "Este campo es requerido")]
         public string nombres { get; set; }
-
-        [Required(ErrorMessage = "Este campo es requerido")]
         public string apellidos { get; set; }
-
         public int id_sexo { get; set; }
-
         public string telefono { get; set; }
-
-        [EmailAddress(ErrorMessage = "El email no tiene el formato correcto")]
         public string email { get; set; }
-
     
         public virtual sexo sexo { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

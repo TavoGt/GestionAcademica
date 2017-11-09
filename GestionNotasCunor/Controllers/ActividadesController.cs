@@ -39,13 +39,45 @@ namespace GestionNotasCunor.Controllers
         // GET: Actividades/Create
         public ActionResult Create()
         {
+            var catedratico = from cat in db.catedratico
+                              select new { id_catedratico = cat.id_catedratico, nom_catedratico = cat.nombres + " " + cat.apellidos};
+
             var curso = from a in db.asign_curso
                         join c in db.curso on a.id_curso equals c.id_curso
                         select new { id_asign_curso = a.id_asign_curso, nom_curso = c.nom_curso };
 
+            var carrera = from c in db.carrera
+                          select new { id_carrera = c.id_carrera, nom_carrera = c.nom_carrera};
+
+            ViewBag.lista_catedraticos = new SelectList(catedratico, "id_catedratico", "nom_catedratico");
+            ViewBag.lista_carreras = new SelectList(carrera, "id_carrera", "nom_carrera");
             ViewBag.id_asign_curso = new SelectList(curso, "id_asign_curso", "nom_curso");
             return View();
         }
+
+        public JsonResult busqCarrera(int idCatedratico)
+        {
+            db.Configuration.ProxyCreationEnabled = false;
+            var consulta = (from a in db.asign_curso
+                            join c in db.carrera on a.id_carrera equals c.id_carrera
+                            where a.id_catedratico == idCatedratico //Id de catedrático según el dropdownlist principal
+                            group c by new {id_carrera =  c.id_carrera, nom_carrera =  c.nom_carrera} into carr
+                            select new { id_carrera = carr.Key.id_carrera, nom_carrera = carr.Key.nom_carrera}).ToList();
+
+            return Json(consulta, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult busqCurso(int idCatedratico, int idCarrera)
+        {
+            db.Configuration.ProxyCreationEnabled = false;
+            var consulta = (from a in db.asign_curso
+                            join c in db.curso on a.id_curso equals c.id_curso
+                            where a.id_catedratico == idCatedratico && a.id_carrera == idCarrera //Id de carrera según el dropdownlist principal
+                            select new { id_asign_curso = a.id_asign_curso, nom_curso = c.nom_curso }).ToList();
+
+            return Json(consulta, JsonRequestBehavior.AllowGet);
+        }
+
 
         // POST: Actividades/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 

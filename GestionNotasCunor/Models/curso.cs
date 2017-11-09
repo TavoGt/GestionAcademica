@@ -11,8 +11,7 @@ namespace GestionNotasCunor.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class curso
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,15 +21,9 @@ namespace GestionNotasCunor.Models
         }
     
         public int id_curso { get; set; }
-
-        [Required(ErrorMessage ="Este campo es requerido")]
         public string cod_curso { get; set; }
-
-        [Required(ErrorMessage = "Este campo es requerido")]
         public string nom_curso { get; set; }
         public Nullable<int> creditos { get; set; }
-
-        [Required(ErrorMessage = "Este campo es requerido")]
         public int no_ciclo { get; set; }
         public Nullable<int> cod_prerrequisito { get; set; }
         public Nullable<int> creditos_necesarios { get; set; }
