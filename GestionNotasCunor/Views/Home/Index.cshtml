@@ -1,11 +1,11 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Página principal";
 }
 <link href="~/Content/estilos.css" rel="stylesheet" />
 
 <body>
     <div class="text-primary text-center">
-        <h1>Control Académico - Centro Universitario del Norte CUNOR</h1>
+        <h1>Control Académico - CUNOR</h1>
     </div>
     <div class="main">
         <div class="slides text-center">
@@ -50,12 +50,14 @@
         </script>
     }
     <div class="btn-group-vertical pull-left jumbotron col-md-4">
-        <button type="button" class="btn btn-primary">Ir a X</button>
-        <button type="button" class="btn btn-primary">Ver Notas</button>
-        <button type="button" class="btn btn-primary">Agregar Notas</button>
-        <button type="button" class="btn btn-primary">Ver nuevos Eventos</button>
-        <button type="button" class="btn btn-primary">Cursos</button>
-        <button type="button" class="btn btn-primary">Eliminar registros :v</button>
+        
+        <button type="button" class="btn btn-primary" onclick="location.href = '@Url.Action("Index", "Carreras")'">Carreras</button>
+        <button type="button" class="btn btn-primary" onclick="location.href = '@Url.Action("Index", "Cursos")'">Cursos</button>
+        <button type="button" class="btn btn-primary" onclick="location.href = '@Url.Action("Index", "Catedraticos")'">Catedráticos</button>
+        <button type="button" class="btn btn-primary" onclick="location.href = '@Url.Action("Index", "AsignacionCurso")'">Cursos Asignados</button>
+        <button type="button" class="btn btn-primary" onclick="location.href = '@Url.Action("Index", "Alumnos")'">Alumnos</button>
+        <button type="button" class="btn btn-primary" onclick="location.href = '@Url.Action("Index", "AsignacionAlumno")'">Alumnos asignados</button>
+        <button type="button" class="btn btn-primary" onclick="location.href = '@Url.Action("Index", "Actividades")'">Actividades</button>
 
     </div>
 
