@@ -5,7 +5,6 @@
     <EntitySet Name="alumno" EntityType="GestionNotasCunorModel.alumno" />
     <EntitySet Name="asign_alumno" EntityType="GestionNotasCunorModel.asign_alumno" />
     <EntitySet Name="asign_curso" EntityType="GestionNotasCunorModel.asign_curso" />
-    <EntitySet Name="calificacion" EntityType="GestionNotasCunorModel.calificacion" />
     <EntitySet Name="caracteristica" EntityType="GestionNotasCunorModel.caracteristica" />
     <EntitySet Name="carrera" EntityType="GestionNotasCunorModel.carrera" />
     <EntitySet Name="catedratico" EntityType="GestionNotasCunorModel.catedratico" />
@@ -16,10 +15,6 @@
       <End Role="asign_curso" EntitySet="asign_curso" />
       <End Role="actividad" EntitySet="actividad" />
     </AssociationSet>
-    <AssociationSet Name="calificacion_id_actividad_fkey" Association="GestionNotasCunorModel.calificacion_id_actividad_fkey">
-      <End Role="actividad" EntitySet="actividad" />
-      <End Role="calificacion" EntitySet="calificacion" />
-    </AssociationSet>
     <AssociationSet Name="alumno_id_sexo_fkey" Association="GestionNotasCunorModel.alumno_id_sexo_fkey">
       <End Role="sexo" EntitySet="sexo" />
       <End Role="alumno" EntitySet="alumno" />
@@ -27,10 +22,6 @@
     <AssociationSet Name="asign_alumno_id_alumno_fkey" Association="GestionNotasCunorModel.asign_alumno_id_alumno_fkey">
       <End Role="alumno" EntitySet="alumno" />
       <End Role="asign_alumno" EntitySet="asign_alumno" />
-    </AssociationSet>
-    <AssociationSet Name="calificacion_id_alumno_fkey" Association="GestionNotasCunorModel.calificacion_id_alumno_fkey">
-      <End Role="alumno" EntitySet="alumno" />
-      <End Role="calificacion" EntitySet="calificacion" />
     </AssociationSet>
     <AssociationSet Name="asign_alumno_id_carrera_fkey" Association="GestionNotasCunorModel.asign_alumno_id_carrera_fkey">
       <End Role="carrera" EntitySet="carrera" />
@@ -64,6 +55,15 @@
       <End Role="sexo" EntitySet="sexo" />
       <End Role="catedratico" EntitySet="catedratico" />
     </AssociationSet>
+    <EntitySet Name="calificacion" EntityType="GestionNotasCunorModel.calificacion" />
+    <AssociationSet Name="calificacion_id_actividad_fkey" Association="GestionNotasCunorModel.calificacion_id_actividad_fkey">
+      <End Role="actividad" EntitySet="actividad" />
+      <End Role="calificacion" EntitySet="calificacion" />
+    </AssociationSet>
+    <AssociationSet Name="calificacion_id_detalle_asign_fkey" Association="GestionNotasCunorModel.calificacion_id_detalle_asign_fkey">
+      <End Role="detalle_asign" EntitySet="detalle_asign" />
+      <End Role="calificacion" EntitySet="calificacion" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="actividad">
     <Key>
@@ -90,7 +90,6 @@
     <Property Name="email" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="sexo" Relationship="GestionNotasCunorModel.alumno_id_sexo_fkey" FromRole="alumno" ToRole="sexo" />
     <NavigationProperty Name="asign_alumno" Relationship="GestionNotasCunorModel.asign_alumno_id_alumno_fkey" FromRole="alumno" ToRole="asign_alumno" />
-    <NavigationProperty Name="calificacion" Relationship="GestionNotasCunorModel.calificacion_id_alumno_fkey" FromRole="alumno" ToRole="calificacion" />
   </EntityType>
   <EntityType Name="asign_alumno">
     <Key>
@@ -121,17 +120,6 @@
     <NavigationProperty Name="catedratico" Relationship="GestionNotasCunorModel.asign_curso_id_catedratico_fkey" FromRole="asign_curso" ToRole="catedratico" />
     <NavigationProperty Name="curso" Relationship="GestionNotasCunorModel.asign_curso_id_curso_fkey" FromRole="asign_curso" ToRole="curso" />
     <NavigationProperty Name="detalle_asign" Relationship="GestionNotasCunorModel.detalle_asign_id_asign_curso_fkey" FromRole="asign_curso" ToRole="detalle_asign" />
-  </EntityType>
-  <EntityType Name="calificacion">
-    <Key>
-      <PropertyRef Name="id_actividad" />
-      <PropertyRef Name="id_alumno" />
-    </Key>
-    <Property Name="id_actividad" Type="Int32" Nullable="false" />
-    <Property Name="id_alumno" Type="Int32" Nullable="false" />
-    <Property Name="calif_obtenida" Type="Decimal" Precision="4" Scale="2" />
-    <NavigationProperty Name="actividad" Relationship="GestionNotasCunorModel.calificacion_id_actividad_fkey" FromRole="calificacion" ToRole="actividad" />
-    <NavigationProperty Name="alumno" Relationship="GestionNotasCunorModel.calificacion_id_alumno_fkey" FromRole="calificacion" ToRole="alumno" />
   </EntityType>
   <EntityType Name="caracteristica">
     <Key>
@@ -189,6 +177,7 @@
     <Property Name="id_asign_curso" Type="Int32" Nullable="false" />
     <NavigationProperty Name="asign_alumno" Relationship="GestionNotasCunorModel.detalle_asign_id_asign_alumno_fkey" FromRole="detalle_asign" ToRole="asign_alumno" />
     <NavigationProperty Name="asign_curso" Relationship="GestionNotasCunorModel.detalle_asign_id_asign_curso_fkey" FromRole="detalle_asign" ToRole="asign_curso" />
+    <NavigationProperty Name="calificacion" Relationship="GestionNotasCunorModel.calificacion_id_detalle_asign_fkey" FromRole="detalle_asign" ToRole="calificacion" />
   </EntityType>
   <EntityType Name="sexo">
     <Key>
@@ -208,18 +197,6 @@
       </Principal>
       <Dependent Role="actividad">
         <PropertyRef Name="id_asign_curso" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="calificacion_id_actividad_fkey">
-    <End Type="GestionNotasCunorModel.actividad" Role="actividad" Multiplicity="1" />
-    <End Type="GestionNotasCunorModel.calificacion" Role="calificacion" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="actividad">
-        <PropertyRef Name="id_actividad" />
-      </Principal>
-      <Dependent Role="calificacion">
-        <PropertyRef Name="id_actividad" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -243,18 +220,6 @@
         <PropertyRef Name="id_alumno" />
       </Principal>
       <Dependent Role="asign_alumno">
-        <PropertyRef Name="id_alumno" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="calificacion_id_alumno_fkey">
-    <End Type="GestionNotasCunorModel.alumno" Role="alumno" Multiplicity="1" />
-    <End Type="GestionNotasCunorModel.calificacion" Role="calificacion" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="alumno">
-        <PropertyRef Name="id_alumno" />
-      </Principal>
-      <Dependent Role="calificacion">
         <PropertyRef Name="id_alumno" />
       </Dependent>
     </ReferentialConstraint>
@@ -352,6 +317,41 @@
       </Principal>
       <Dependent Role="catedratico">
         <PropertyRef Name="id_sexo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="calificacion">
+    <Key>
+      <PropertyRef Name="id_calificacion" />
+    </Key>
+    <Property Name="id_calificacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_actividad" Type="Int32" />
+    <Property Name="cal_obtenida" Type="Decimal" Precision="4" Scale="2" />
+    <Property Name="id_detalle_asign" Type="Int32" />
+    <NavigationProperty Name="actividad" Relationship="GestionNotasCunorModel.calificacion_id_actividad_fkey" FromRole="calificacion" ToRole="actividad" />
+    <NavigationProperty Name="detalle_asign" Relationship="GestionNotasCunorModel.calificacion_id_detalle_asign_fkey" FromRole="calificacion" ToRole="detalle_asign" />
+  </EntityType>
+  <Association Name="calificacion_id_actividad_fkey">
+    <End Type="GestionNotasCunorModel.actividad" Role="actividad" Multiplicity="0..1" />
+    <End Type="GestionNotasCunorModel.calificacion" Role="calificacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="actividad">
+        <PropertyRef Name="id_actividad" />
+      </Principal>
+      <Dependent Role="calificacion">
+        <PropertyRef Name="id_actividad" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="calificacion_id_detalle_asign_fkey">
+    <End Type="GestionNotasCunorModel.detalle_asign" Role="detalle_asign" Multiplicity="0..1" />
+    <End Type="GestionNotasCunorModel.calificacion" Role="calificacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="detalle_asign">
+        <PropertyRef Name="id_detalle_asign" />
+      </Principal>
+      <Dependent Role="calificacion">
+        <PropertyRef Name="id_detalle_asign" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

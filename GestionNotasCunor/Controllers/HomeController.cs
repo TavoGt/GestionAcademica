@@ -15,7 +15,7 @@ namespace GestionNotasCunor.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "IPC2";
 
             return View();
         }

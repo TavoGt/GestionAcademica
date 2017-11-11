@@ -18,7 +18,6 @@ namespace GestionNotasCunor.Models
         public alumno()
         {
             this.asign_alumno = new HashSet<asign_alumno>();
-            this.calificacion = new HashSet<calificacion>();
         }
     
         public int id_alumno { get; set; }
@@ -32,7 +31,5 @@ namespace GestionNotasCunor.Models
         public virtual sexo sexo { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<asign_alumno> asign_alumno { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<calificacion> calificacion { get; set; }
     }
 }

@@ -49,15 +49,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="calificacion">
-      <EntityTypeMapping TypeName="GestionNotasCunorModel.calificacion">
-        <MappingFragment StoreEntitySet="calificacion">
-          <ScalarProperty Name="calif_obtenida" ColumnName="calif_obtenida" />
-          <ScalarProperty Name="id_alumno" ColumnName="id_alumno" />
-          <ScalarProperty Name="id_actividad" ColumnName="id_actividad" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="caracteristica">
       <EntityTypeMapping TypeName="GestionNotasCunorModel.caracteristica">
         <MappingFragment StoreEntitySet="caracteristica">
@@ -116,6 +107,16 @@
         <MappingFragment StoreEntitySet="sexo">
           <ScalarProperty Name="nom_sexo" ColumnName="nom_sexo" />
           <ScalarProperty Name="id_sexo" ColumnName="id_sexo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="calificacion">
+      <EntityTypeMapping TypeName="GestionNotasCunorModel.calificacion">
+        <MappingFragment StoreEntitySet="calificacion">
+          <ScalarProperty Name="id_detalle_asign" ColumnName="id_detalle_asign" />
+          <ScalarProperty Name="cal_obtenida" ColumnName="cal_obtenida" />
+          <ScalarProperty Name="id_actividad" ColumnName="id_actividad" />
+          <ScalarProperty Name="id_calificacion" ColumnName="id_calificacion" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

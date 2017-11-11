@@ -44,7 +44,7 @@ namespace GestionNotasCunor.Controllers
 
             var curso = from a in db.asign_curso
                         join c in db.curso on a.id_curso equals c.id_curso
-                        select new { id_asign_curso = a.id_asign_curso, nom_curso = c.nom_curso };
+                        select new { id_asign_curso = a.id_asign_curso, nom_curso = c.nom_curso +" ("+ a.carrera.nom_carrera+")"};
 
             var carrera = from c in db.carrera
                           select new { id_carrera = c.id_carrera, nom_carrera = c.nom_carrera};
@@ -84,7 +84,7 @@ namespace GestionNotasCunor.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id_actividad,nom_actividad,valor,fecha,id_asign_curso")] actividad actividad)
+        public ActionResult Create(/*[Bind(Include = "id_actividad,nom_actividad,valor,fecha,id_asign_curso")]*/ actividad actividad)
         {
             if (ModelState.IsValid)
             {

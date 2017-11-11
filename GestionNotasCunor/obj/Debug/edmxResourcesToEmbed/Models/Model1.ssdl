@@ -46,12 +46,12 @@
   </EntityType>
   <EntityType Name="calificacion">
     <Key>
-      <PropertyRef Name="id_actividad" />
-      <PropertyRef Name="id_alumno" />
+      <PropertyRef Name="id_calificacion" />
     </Key>
-    <Property Name="id_actividad" Type="int4" Nullable="false" />
-    <Property Name="id_alumno" Type="int4" Nullable="false" />
-    <Property Name="calif_obtenida" Type="numeric" Precision="4" Scale="2" />
+    <Property Name="id_calificacion" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_actividad" Type="int4" />
+    <Property Name="cal_obtenida" Type="numeric" Precision="4" Scale="2" />
+    <Property Name="id_detalle_asign" Type="int4" />
   </EntityType>
   <EntityType Name="caracteristica">
     <Key>
@@ -193,7 +193,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="calificacion_id_actividad_fkey">
-    <End Role="actividad" Type="Self.actividad" Multiplicity="1" />
+    <End Role="actividad" Type="Self.actividad" Multiplicity="0..1" />
     <End Role="calificacion" Type="Self.calificacion" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="actividad">
@@ -204,15 +204,15 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="calificacion_id_alumno_fkey">
-    <End Role="alumno" Type="Self.alumno" Multiplicity="1" />
+  <Association Name="calificacion_id_detalle_asign_fkey">
+    <End Role="detalle_asign" Type="Self.detalle_asign" Multiplicity="0..1" />
     <End Role="calificacion" Type="Self.calificacion" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="alumno">
-        <PropertyRef Name="id_alumno" />
+      <Principal Role="detalle_asign">
+        <PropertyRef Name="id_detalle_asign" />
       </Principal>
       <Dependent Role="calificacion">
-        <PropertyRef Name="id_alumno" />
+        <PropertyRef Name="id_detalle_asign" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -308,8 +308,8 @@
       <End Role="actividad" EntitySet="actividad" />
       <End Role="calificacion" EntitySet="calificacion" />
     </AssociationSet>
-    <AssociationSet Name="calificacion_id_alumno_fkey" Association="Self.calificacion_id_alumno_fkey">
-      <End Role="alumno" EntitySet="alumno" />
+    <AssociationSet Name="calificacion_id_detalle_asign_fkey" Association="Self.calificacion_id_detalle_asign_fkey">
+      <End Role="detalle_asign" EntitySet="detalle_asign" />
       <End Role="calificacion" EntitySet="calificacion" />
     </AssociationSet>
     <AssociationSet Name="catedratico_id_sexo_fkey" Association="Self.catedratico_id_sexo_fkey">
