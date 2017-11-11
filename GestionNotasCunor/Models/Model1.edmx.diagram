@@ -26,9 +26,9 @@
         <AssociationConnector Association="GestionNotasCunorModel.detalle_asign_id_asign_curso_fkey" />
         <AssociationConnector Association="GestionNotasCunorModel.curso_id_caracteristica_fkey" />
         <AssociationConnector Association="GestionNotasCunorModel.catedratico_id_sexo_fkey" />
-        <EntityTypeShape EntityType="GestionNotasCunorModel.calificacion" Width="1.5" PointX="10.25" PointY="5" />
+        <EntityTypeShape EntityType="GestionNotasCunorModel.calificacion" Width="1.5" PointX="10.75" PointY="6.25" />
         <AssociationConnector Association="GestionNotasCunorModel.calificacion_id_actividad_fkey" />
-        <AssociationConnector Association="GestionNotasCunorModel.calificacion_id_detalle_asign_fkey" />
+        <AssociationConnector Association="GestionNotasCunorModel.calificacion_id_alumnno_fkey" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

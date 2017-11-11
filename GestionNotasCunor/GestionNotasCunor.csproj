@@ -214,6 +214,7 @@
     <Compile Include="Controllers\AlumnosController.cs" />
     <Compile Include="Controllers\AsignacionAlumnoController.cs" />
     <Compile Include="Controllers\AsignacionCursoController.cs" />
+    <Compile Include="Controllers\CalificacionesController.cs" />
     <Compile Include="Controllers\CarrerasController.cs" />
     <Compile Include="Controllers\CatedraticosController.cs" />
     <Compile Include="Controllers\CursosController.cs" />
@@ -458,6 +459,11 @@
     <Content Include="Views\Actividades\Details.cshtml" />
     <Content Include="Views\Actividades\Edit.cshtml" />
     <Content Include="Views\Actividades\Index.cshtml" />
+    <Content Include="Views\Calificaciones\Create.cshtml" />
+    <Content Include="Views\Calificaciones\Delete.cshtml" />
+    <Content Include="Views\Calificaciones\Details.cshtml" />
+    <Content Include="Views\Calificaciones\Edit.cshtml" />
+    <Content Include="Views\Calificaciones\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

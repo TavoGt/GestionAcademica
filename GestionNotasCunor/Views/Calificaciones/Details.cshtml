@@ -1,0 +1,46 @@
+﻿@model GestionNotasCunor.Models.calificacion
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>Calificacion</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.Label("Calificación obtenida")
+            @*@Html.DisplayNameFor(model => model.cal_obtenida)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cal_obtenida)
+        </dd>
+
+        <dt>
+            @Html.Label("Actividad")
+            @*@Html.DisplayNameFor(model => model.actividad.nom_actividad)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.actividad.nom_actividad)
+        </dd>
+
+        <dt>
+            @Html.Label("Carnet")
+            @*@Html.DisplayNameFor(model => model.alumno.carnet)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.alumno.carnet)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.id_calificacion }) |
+    @Html.ActionLink("Regresar a Lista", "Index")
+</p>

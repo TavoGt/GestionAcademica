@@ -1,0 +1,53 @@
+﻿@model IEnumerable<GestionNotasCunor.Models.calificacion>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Actividad
+        </th>
+        <th>
+            Carnet
+        </th>
+        <th>
+            Alumno
+        </th>
+        <th>
+            Calificación obtenida
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.actividad.nom_actividad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.alumno.carnet)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.alumno.nombres)
+            @Html.DisplayFor(modelItem => item.alumno.apellidos)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cal_obtenida)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.id_calificacion }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.id_calificacion }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.id_calificacion })
+        </td>
+    </tr>
+}
+
+</table>

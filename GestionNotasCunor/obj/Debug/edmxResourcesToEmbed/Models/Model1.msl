@@ -113,7 +113,7 @@
     <EntitySetMapping Name="calificacion">
       <EntityTypeMapping TypeName="GestionNotasCunorModel.calificacion">
         <MappingFragment StoreEntitySet="calificacion">
-          <ScalarProperty Name="id_detalle_asign" ColumnName="id_detalle_asign" />
+          <ScalarProperty Name="id_alumnno" ColumnName="id_alumnno" />
           <ScalarProperty Name="cal_obtenida" ColumnName="cal_obtenida" />
           <ScalarProperty Name="id_actividad" ColumnName="id_actividad" />
           <ScalarProperty Name="id_calificacion" ColumnName="id_calificacion" />

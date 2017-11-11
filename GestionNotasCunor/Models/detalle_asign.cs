@@ -14,19 +14,11 @@ namespace GestionNotasCunor.Models
     
     public partial class detalle_asign
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public detalle_asign()
-        {
-            this.calificacion = new HashSet<calificacion>();
-        }
-    
         public int id_detalle_asign { get; set; }
         public int id_asign_alumno { get; set; }
         public int id_asign_curso { get; set; }
     
         public virtual asign_alumno asign_alumno { get; set; }
         public virtual asign_curso asign_curso { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<calificacion> calificacion { get; set; }
     }
 }
